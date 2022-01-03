@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BaseViewController.swift
 //  SproutFARM
 //
 //  Created by KEEN on 2022/01/03.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class BaseViewController: UIViewController {
+  
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,6 +19,4 @@ class ViewController: UIViewController {
   func configure() {
     view.backgroundColor = .systemBackground
   }
-
 }
-
