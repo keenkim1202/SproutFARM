@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1CE8426727827F0E003259A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426627827F0E003259A1 /* AppDelegate.swift */; };
+		1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426827827F0E003259A1 /* SceneDelegate.swift */; };
+		1CE8426B27827F0E003259A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426A27827F0E003259A1 /* ViewController.swift */; };
+		1CE8427027827F0F003259A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE8426F27827F0F003259A1 /* Assets.xcassets */; };
+		1CE8427327827F0F003259A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE8427127827F0F003259A1 /* LaunchScreen.storyboard */; };
+		1CE84281278280DE003259A1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE84280278280DE003259A1 /* RegisterViewController.swift */; };
+		1CE8428327828179003259A1 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8428227828179003259A1 /* PostViewController.swift */; };
+		1CE8428527828180003259A1 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8428427828180003259A1 /* DetailPostViewController.swift */; };
+		1CE8428727828186003259A1 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8428627828186003259A1 /* PostListViewController.swift */; };
+		1CE8428C278281C7003259A1 /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8428B278281C7003259A1 /* EditCommentViewController.swift */; };
+		1CE8428F27828225003259A1 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8428E27828225003259A1 /* APIService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1CE8426327827F0E003259A1 /* SproutFARM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SproutFARM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CE8426627827F0E003259A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1CE8426827827F0E003259A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1CE8426A27827F0E003259A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1CE8426F27827F0F003259A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1CE8427227827F0F003259A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1CE8427427827F0F003259A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CE84280278280DE003259A1 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		1CE8428227828179003259A1 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		1CE8428427828180003259A1 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
+		1CE8428627828186003259A1 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
+		1CE8428B278281C7003259A1 /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
+		1CE8428E27828225003259A1 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1CE8426027827F0E003259A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CE8425A27827F0E003259A1 = {
+			isa = PBXGroup;
+			children = (
+				1CE8426527827F0E003259A1 /* SproutFARM */,
+				1CE8426427827F0E003259A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1CE8426427827F0E003259A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8426327827F0E003259A1 /* SproutFARM.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1CE8426527827F0E003259A1 /* SproutFARM */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8427D27828079003259A1 /* Resources */,
+				1CE8427E2782807F003259A1 /* Sources */,
+				1CE8427F27828085003259A1 /* Supporting Files */,
+			);
+			path = SproutFARM;
+			sourceTree = "<group>";
+		};
+		1CE8427A27828054003259A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1CE84289278281A5003259A1 /* Login */,
+				1CE842882782818A003259A1 /* Post */,
+				1CE8428A278281BC003259A1 /* Comment */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1CE8427B2782806C003259A1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1CE8427C27828070003259A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1CE8427D27828079003259A1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8426F27827F0F003259A1 /* Assets.xcassets */,
+				1CE8427127827F0F003259A1 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1CE8427E2782807F003259A1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8426627827F0E003259A1 /* AppDelegate.swift */,
+				1CE8426827827F0E003259A1 /* SceneDelegate.swift */,
+				1CE8428D2782821C003259A1 /* Service */,
+				1CE8427C27828070003259A1 /* Model */,
+				1CE8427B2782806C003259A1 /* ViewModel */,
+				1CE8427A27828054003259A1 /* View */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1CE8427F27828085003259A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8427427827F0F003259A1 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CE842882782818A003259A1 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8428227828179003259A1 /* PostViewController.swift */,
+				1CE8428427828180003259A1 /* DetailPostViewController.swift */,
+				1CE8428627828186003259A1 /* PostListViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		1CE84289278281A5003259A1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8426A27827F0E003259A1 /* ViewController.swift */,
+				1CE84280278280DE003259A1 /* RegisterViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1CE8428A278281BC003259A1 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8428B278281C7003259A1 /* EditCommentViewController.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		1CE8428D2782821C003259A1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8428E27828225003259A1 /* APIService.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1CE8426227827F0E003259A1 /* SproutFARM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CE8427727827F0F003259A1 /* Build configuration list for PBXNativeTarget "SproutFARM" */;
+			buildPhases = (
+				1CE8425F27827F0E003259A1 /* Sources */,
+				1CE8426027827F0E003259A1 /* Frameworks */,
+				1CE8426127827F0E003259A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SproutFARM;
+			productName = SproutFARM;
+			productReference = 1CE8426327827F0E003259A1 /* SproutFARM.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1CE8425B27827F0E003259A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					1CE8426227827F0E003259A1 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 1CE8425E27827F0E003259A1 /* Build configuration list for PBXProject "SproutFARM" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1CE8425A27827F0E003259A1;
+			productRefGroup = 1CE8426427827F0E003259A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1CE8426227827F0E003259A1 /* SproutFARM */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1CE8426127827F0E003259A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CE8427327827F0F003259A1 /* LaunchScreen.storyboard in Resources */,
+				1CE8427027827F0F003259A1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1CE8425F27827F0E003259A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CE8428727828186003259A1 /* PostListViewController.swift in Sources */,
+				1CE8426B27827F0E003259A1 /* ViewController.swift in Sources */,
+				1CE8428C278281C7003259A1 /* EditCommentViewController.swift in Sources */,
+				1CE8426727827F0E003259A1 /* AppDelegate.swift in Sources */,
+				1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */,
+				1CE84281278280DE003259A1 /* RegisterViewController.swift in Sources */,
+				1CE8428327828179003259A1 /* PostViewController.swift in Sources */,
+				1CE8428F27828225003259A1 /* APIService.swift in Sources */,
+				1CE8428527828180003259A1 /* DetailPostViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1CE8427127827F0F003259A1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CE8427227827F0F003259A1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1CE8427527827F0F003259A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1CE8427627827F0F003259A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1CE8427827827F0F003259A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5LZNHGFB8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Supporting Files/SproutFARM/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KEEN.SproutFARM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1CE8427927827F0F003259A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5LZNHGFB8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Supporting Files/SproutFARM/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = KEEN.SproutFARM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1CE8425E27827F0E003259A1 /* Build configuration list for PBXProject "SproutFARM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CE8427527827F0F003259A1 /* Debug */,
+				1CE8427627827F0F003259A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CE8427727827F0F003259A1 /* Build configuration list for PBXNativeTarget "SproutFARM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CE8427827827F0F003259A1 /* Debug */,
+				1CE8427927827F0F003259A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1CE8425B27827F0E003259A1 /* Project object */;
+}
