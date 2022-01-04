@@ -8,5 +8,5 @@
 import UIKit
 
 extension UIColor {
-  static let mainGreenColor = UIColor(named: "mainGreen")!
+  static let mainGreenColor = UIColor(named: "mainGreenColor")!
 }

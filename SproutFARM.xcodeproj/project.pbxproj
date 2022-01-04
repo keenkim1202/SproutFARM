@@ -22,6 +22,8 @@
 		1CE842932782829B003259A1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842922782829B003259A1 /* BaseViewController.swift */; };
 		1CE84297278283EC003259A1 /* UIImage++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE84296278283EC003259A1 /* UIImage++Extension.swift */; };
 		1CE842992782844C003259A1 /* UIColor++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842982782844C003259A1 /* UIColor++Extension.swift */; };
+		1CE8429C27828672003259A1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1CE8429B27828672003259A1 /* SnapKit */; };
+		1CE842CF2783E4FB003259A1 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842CE2783E4FB003259A1 /* IntroView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,7 @@
 		1CE842922782829B003259A1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1CE84296278283EC003259A1 /* UIImage++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage++Extension.swift"; sourceTree = "<group>"; };
 		1CE842982782844C003259A1 /* UIColor++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++Extension.swift"; sourceTree = "<group>"; };
+		1CE842CE2783E4FB003259A1 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE8429C27828672003259A1 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +157,7 @@
 				1CE842902782827D003259A1 /* IntroViewController.swift */,
 				1CE84280278280DE003259A1 /* RegisterViewController.swift */,
 				1CE8426A27827F0E003259A1 /* LoginViewController.swift */,
+				1CE842CE2783E4FB003259A1 /* IntroView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -198,6 +203,9 @@
 			dependencies = (
 			);
 			name = SproutFARM;
+			packageProductDependencies = (
+				1CE8429B27828672003259A1 /* SnapKit */,
+			);
 			productName = SproutFARM;
 			productReference = 1CE8426327827F0E003259A1 /* SproutFARM.app */;
 			productType = "com.apple.product-type.application";
@@ -226,6 +234,9 @@
 				Base,
 			);
 			mainGroup = 1CE8425A27827F0E003259A1;
+			packageReferences = (
+				1CE8429A27828672003259A1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 1CE8426427827F0E003259A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +270,7 @@
 				1CE84297278283EC003259A1 /* UIImage++Extension.swift in Sources */,
 				1CE8428C278281C7003259A1 /* EditCommentViewController.swift in Sources */,
 				1CE8426727827F0E003259A1 /* AppDelegate.swift in Sources */,
+				1CE842CF2783E4FB003259A1 /* IntroView.swift in Sources */,
 				1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */,
 				1CE842912782827D003259A1 /* IntroViewController.swift in Sources */,
 				1CE84281278280DE003259A1 /* RegisterViewController.swift in Sources */,
@@ -474,6 +486,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1CE8429A27828672003259A1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1CE8429B27828672003259A1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1CE8429A27828672003259A1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1CE8425B27827F0E003259A1 /* Project object */;
 }
