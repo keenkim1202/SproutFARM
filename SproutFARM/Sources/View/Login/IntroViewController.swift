@@ -18,7 +18,7 @@ class IntroViewController: BaseViewController {
     super.viewDidLoad()
 
     setConstraints()
-    introView.startButton.addTarget(self, action: #selector(onStart), for: .touchUpInside)
+    introView.startButton.addTarget(self, action: #selector(onRegister), for: .touchUpInside)
     introView.loginButton.addTarget(self, action: #selector(onLogin), for: .touchUpInside)
   }
   
@@ -32,13 +32,14 @@ class IntroViewController: BaseViewController {
   }
   
   // MARK: - Actions
-  @objc func onStart() {
-    print("start")
+  @objc func onRegister() {
+    print("register")
+    self.navigationController?.pushViewController(RegisterViewController(), animated: true)
   }
   
   @objc func onLogin() {
     print("login")
-    self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+    self.navigationController?.pushViewController(LoginViewController(), animated: true)
   }
 
 }
