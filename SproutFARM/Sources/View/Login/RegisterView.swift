@@ -57,6 +57,7 @@ class RegisterView: UIView {
     b.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
     b.backgroundColor = .systemGray4
     b.layer.cornerRadius = 5
+    b.isEnabled = false
     return b
   }()
   
@@ -138,11 +139,13 @@ class RegisterView: UIView {
       password == confirm
     else {
       self.registerButton.backgroundColor = .systemGray4
+      self.registerButton.setTitle("가입하기", for: .normal)
       self.registerButton.isEnabled = false
       return
     }
   
     self.registerButton.backgroundColor = .mainGreenColor
+    self.registerButton.setTitle("시작하기", for: .normal)
     self.registerButton.isEnabled = true
   }
 }
