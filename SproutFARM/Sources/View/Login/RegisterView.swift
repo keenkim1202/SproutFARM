@@ -65,15 +65,23 @@ class RegisterView: UIView {
       super.init(frame: frame)
     createViews()
     setConstraints()
+    setAddTarget()
   }
   
   required init?(coder: NSCoder) {
       super.init(coder: coder)
     createViews()
     setConstraints()
+    setAddTarget()
   }
   
   // MARK: - Configure
+  private func setAddTarget() {
+    [emailTextField, nicknameTextField, passwordTextField, confirmTextField].forEach {
+      $0.addTarget(self, action: #selector(textFieldsIsNotEmpty), for: .editingChanged)
+    }
+  }
+  
   private func createViews() {
     addSubview(emailTextField)
     addSubview(nicknameTextField)
@@ -117,5 +125,24 @@ class RegisterView: UIView {
       $0.top.equalTo(confirmTextField.snp.bottom).offset(10)
       $0.height.equalTo(45)
     }
+  }
+  
+  @objc func textFieldsIsNotEmpty(sender: UITextField) {
+    sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
+  
+    guard
+      let email = emailTextField.text, !email.isEmpty,
+      let nickname = nicknameTextField.text, !nickname.isEmpty,
+      let password = passwordTextField.text, !password.isEmpty,
+      let confirm = confirmTextField.text,
+      password == confirm
+    else {
+      self.registerButton.backgroundColor = .systemGray4
+      self.registerButton.isEnabled = false
+      return
+    }
+  
+    self.registerButton.backgroundColor = .mainGreenColor
+    self.registerButton.isEnabled = true
   }
 }
