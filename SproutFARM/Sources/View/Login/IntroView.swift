@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class IntroView: UIView {
   
@@ -118,13 +119,13 @@ class IntroView: UIView {
     startButton.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(20)
       $0.trailing.equalToSuperview().offset(-20)
-      $0.bottom.equalTo(loginStackView.snp.top).offset(-20)
+      $0.bottom.equalTo(loginStackView.snp.top).offset(-10)
       $0.height.equalTo(40)
     }
     
     loginStackView.snp.makeConstraints {
       $0.centerX.equalToSuperview()
-      $0.bottom.equalToSuperview().offset(-30)
+      $0.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
     }
   }
 }

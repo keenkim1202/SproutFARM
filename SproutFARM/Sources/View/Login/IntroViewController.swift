@@ -38,6 +38,7 @@ class IntroViewController: BaseViewController {
   
   @objc func onLogin() {
     print("login")
+    self.navigationController?.pushViewController(RegisterViewController(), animated: true)
   }
 
 }

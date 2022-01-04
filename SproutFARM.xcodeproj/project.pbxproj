@@ -24,6 +24,9 @@
 		1CE842992782844C003259A1 /* UIColor++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842982782844C003259A1 /* UIColor++Extension.swift */; };
 		1CE8429C27828672003259A1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1CE8429B27828672003259A1 /* SnapKit */; };
 		1CE842CF2783E4FB003259A1 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842CE2783E4FB003259A1 /* IntroView.swift */; };
+		1CE842D12783E69B003259A1 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D02783E69B003259A1 /* RegisterView.swift */; };
+		1CE842D32783E6A2003259A1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D22783E6A2003259A1 /* LoginView.swift */; };
+		1CE842D52783EB74003259A1 /* UITextField++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D42783EB74003259A1 /* UITextField++Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		1CE84296278283EC003259A1 /* UIImage++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage++Extension.swift"; sourceTree = "<group>"; };
 		1CE842982782844C003259A1 /* UIColor++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++Extension.swift"; sourceTree = "<group>"; };
 		1CE842CE2783E4FB003259A1 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		1CE842D02783E69B003259A1 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		1CE842D22783E6A2003259A1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1CE842D42783EB74003259A1 /* UITextField++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField++Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,8 @@
 				1CE84280278280DE003259A1 /* RegisterViewController.swift */,
 				1CE8426A27827F0E003259A1 /* LoginViewController.swift */,
 				1CE842CE2783E4FB003259A1 /* IntroView.swift */,
+				1CE842D02783E69B003259A1 /* RegisterView.swift */,
+				1CE842D22783E6A2003259A1 /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				1CE84296278283EC003259A1 /* UIImage++Extension.swift */,
+				1CE842D42783EB74003259A1 /* UITextField++Extension.swift */,
 				1CE842982782844C003259A1 /* UIColor++Extension.swift */,
 			);
 			path = Extension;
@@ -269,13 +278,16 @@
 				1CE842932782829B003259A1 /* BaseViewController.swift in Sources */,
 				1CE84297278283EC003259A1 /* UIImage++Extension.swift in Sources */,
 				1CE8428C278281C7003259A1 /* EditCommentViewController.swift in Sources */,
+				1CE842D12783E69B003259A1 /* RegisterView.swift in Sources */,
 				1CE8426727827F0E003259A1 /* AppDelegate.swift in Sources */,
 				1CE842CF2783E4FB003259A1 /* IntroView.swift in Sources */,
 				1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */,
 				1CE842912782827D003259A1 /* IntroViewController.swift in Sources */,
 				1CE84281278280DE003259A1 /* RegisterViewController.swift in Sources */,
 				1CE8428327828179003259A1 /* PostViewController.swift in Sources */,
+				1CE842D52783EB74003259A1 /* UITextField++Extension.swift in Sources */,
 				1CE8428F27828225003259A1 /* APIService.swift in Sources */,
+				1CE842D32783E6A2003259A1 /* LoginView.swift in Sources */,
 				1CE8428527828180003259A1 /* DetailPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
