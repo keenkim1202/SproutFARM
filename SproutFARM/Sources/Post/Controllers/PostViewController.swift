@@ -34,7 +34,7 @@ class PostViewController: BaseViewController {
     if viewType == .add {
       self.title = "새싹농장 글쓰기"
     } else {
-      self.title = "댓글 수정하기"
+      self.title = "글 수정하기"
     }
     
     self.navigationController?.setNavigationBarHidden(false, animated: true)

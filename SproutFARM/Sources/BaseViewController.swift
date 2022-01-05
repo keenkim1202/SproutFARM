@@ -13,6 +13,7 @@ class BaseViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configure()
+    adjustNavigationBarFont()
   }
   
   // MARK: - Configure
@@ -36,5 +37,29 @@ class BaseViewController: UIViewController {
     alertMenu.addAction(cancelAction)
     
     self.present(alertMenu, animated: true, completion: nil)
+  }
+  
+  func adjustNavigationBarFont() {
+    self.navigationController?.navigationBar.titleTextAttributes = [
+      NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 15)!
+    ]
+    // 
+    // let BarButtonTextAttributes: [NSAttributedString.Key: Any] = [
+    //     .font: UIFont(name: "HelveticaNeue-Bold", size: 10)!
+    // ]
+    // 
+    // if let leftBarButtons = self.navigationItem.leftBarButtonItems {
+    //   for button in leftBarButtons {
+    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .normal)
+    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .highlighted)
+    //   }
+    // }
+    // 
+    // if let rightBarButtons = self.navigationItem.rightBarButtonItems {
+    //   for button in rightBarButtons {
+    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .normal)
+    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .highlighted)
+    //   }
+    // }
   }
 }

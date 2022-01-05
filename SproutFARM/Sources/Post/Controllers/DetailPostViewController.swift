@@ -31,6 +31,7 @@ class DetailPostViewController: BaseViewController {
     super.viewDidLoad()
     
     self.navigationController?.setNavigationBarHidden(false, animated: true)
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onEditPost))
     setTableView()
     setConstaints()
     addKeyboardNotification()
@@ -60,7 +61,6 @@ class DetailPostViewController: BaseViewController {
       $0.bottom.equalTo(view.safeAreaLayoutGuide)
       $0.height.equalTo(Metric.toolbarHeight)
     }
-
   }
   
   private func addKeyboardNotification() {
@@ -96,6 +96,12 @@ class DetailPostViewController: BaseViewController {
       tableView.frame.origin.y += keyboardHeight
       toolbar.frame.origin.y += keyboardHeight
     }
+  }
+  
+  @objc func onEditPost() {
+    let vc = PostViewController()
+    vc.viewType = .update
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 

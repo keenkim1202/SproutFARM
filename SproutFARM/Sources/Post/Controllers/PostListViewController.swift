@@ -39,8 +39,11 @@ class PostListViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.title = "새싹 농장"
-
+    // self.title = "새싹 농장"
+    let label = UILabel()
+    label.text = "새싹 농장"
+    label.font = .systemFont(ofSize: 15, weight: .bold)
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
     setTableView()
     setConstaints()
   }
