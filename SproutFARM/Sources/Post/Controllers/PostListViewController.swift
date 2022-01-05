@@ -31,6 +31,7 @@ class PostListViewController: BaseViewController {
     b.layer.cornerRadius = 0.5 * Metric.buttonHeight
     b.layer.shadowOffset = CGSize(width: 2, height: 2)
     b.layer.shadowOpacity = 0.5
+    b.addTarget(self, action: #selector(onAdd), for: .touchUpInside)
     return b
   }()
   
@@ -57,7 +58,7 @@ class PostListViewController: BaseViewController {
     view.addSubview(addButton)
     
     tableView.snp.makeConstraints {
-      $0.edges.equalToSuperview()
+      $0.edges.equalTo(view.snp.edges)
     }
     
     addButton.snp.makeConstraints {
@@ -67,13 +68,15 @@ class PostListViewController: BaseViewController {
   }
   
   // MARK: - Action
-  
+  @objc func onAdd() {
+    self.navigationController?.pushViewController(PostViewController(), animated: true)
+  }
 }
 
 // MARK: - Extension
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10 // test
+    return 20 // test
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,5 +93,13 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.navigationController?.pushViewController(DetailPostViewController(), animated: true)
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+      if scrollView.contentOffset.y <= 0 {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+      } else {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+      }
   }
 }

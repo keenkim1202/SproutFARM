@@ -30,6 +30,7 @@ class DetailPostViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.navigationController?.setNavigationBarHidden(false, animated: true)
     setTableView()
     setConstaints()
     addKeyboardNotification()

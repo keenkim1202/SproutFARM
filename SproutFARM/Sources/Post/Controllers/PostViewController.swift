@@ -11,14 +11,10 @@ import SnapKit
 class PostViewController: BaseViewController {
   
   // MARK: - UI
-  let rightBarButton: UIBarButtonItem = {
-    let b = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onDone))
-    return b
-  }()
-  
   let textView: UITextView = {
     let t = UITextView()
     t.font = .systemFont(ofSize: 13, weight: .bold)
+    t.backgroundColor = .systemGray4
     return t
   }()
   
@@ -27,21 +23,27 @@ class PostViewController: BaseViewController {
     super.viewDidLoad()
     
     self.title = "새싹농장 글쓰기"
-    self.navigationItem.rightBarButtonItem = self.rightBarButton
+    self.navigationController?.setNavigationBarHidden(false, animated: true)
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onDone))
     setConstraints()
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
   }
   
   // MARK: - Configure
   private func setConstraints() {
     view.addSubview(textView)
     textView.snp.makeConstraints {
-      $0.leading.top.equalToSuperview().offset(20)
-      $0.trailing.bottom.equalToSuperview().offset(-20)
+      $0.leading.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+      $0.trailing.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
     }
   }
   
   // MARK: - Action
-  @objc func onDone() {
-    print("onDone")
+  @objc func onDone(_ sender: UIBarButtonItem) {
+    self.textView.endEditing(true)
+    self.navigationController?.popViewController(animated: true)
   }
 }
