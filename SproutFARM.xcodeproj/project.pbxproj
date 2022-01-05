@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C58C7D027842B3500CC3F50 /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7CF27842B3500CC3F50 /* PostListCell.swift */; };
-		1C58C7D227842B4C00CC3F50 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D127842B4C00CC3F50 /* DetailPostView.swift */; };
+		1C58C7D227842B4C00CC3F50 /* DetailToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */; };
 		1C58C7D427842B5A00CC3F50 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D327842B5A00CC3F50 /* PostView.swift */; };
 		1C58C7D627842CE200CC3F50 /* PostListCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */; };
 		1CC9A7032785C62200914655 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7022785C62200914655 /* ProfileCell.swift */; };
@@ -40,7 +40,7 @@
 		04481C657972D5685A994BD4 /* Pods_SproutFARM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SproutFARM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SproutFARM.release.xcconfig"; path = "Target Support Files/Pods-SproutFARM/Pods-SproutFARM.release.xcconfig"; sourceTree = "<group>"; };
 		1C58C7CF27842B3500CC3F50 /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
-		1C58C7D127842B4C00CC3F50 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
+		1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailToolbar.swift; sourceTree = "<group>"; };
 		1C58C7D327842B5A00CC3F50 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCommentCell.swift; sourceTree = "<group>"; };
 		1CC9A7022785C62200914655 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 				1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */,
 				1CC9A7022785C62200914655 /* ProfileCell.swift */,
 				1CC9A7042785C9D200914655 /* CommentListCell.swift */,
-				1C58C7D127842B4C00CC3F50 /* DetailPostView.swift */,
+				1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */,
 				1C58C7D327842B5A00CC3F50 /* PostView.swift */,
 			);
 			path = Views;
@@ -402,7 +402,7 @@
 				1CE842992782844C003259A1 /* UIColor++Extension.swift in Sources */,
 				1CE8426B27827F0E003259A1 /* LoginViewController.swift in Sources */,
 				1CC9A7032785C62200914655 /* ProfileCell.swift in Sources */,
-				1C58C7D227842B4C00CC3F50 /* DetailPostView.swift in Sources */,
+				1C58C7D227842B4C00CC3F50 /* DetailToolbar.swift in Sources */,
 				1CC9A7052785C9D200914655 /* CommentListCell.swift in Sources */,
 				1CE842932782829B003259A1 /* BaseViewController.swift in Sources */,
 				1CE84297278283EC003259A1 /* UIImage++Extension.swift in Sources */,

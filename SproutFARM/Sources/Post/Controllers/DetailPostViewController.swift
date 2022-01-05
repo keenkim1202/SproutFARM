@@ -27,32 +27,7 @@ class DetailPostViewController: BaseViewController {
     return t
   }()
   
-  let toolbar: UIToolbar = {
-    let t = UIToolbar()
-    t.barTintColor = .systemBackground
-    return t
-  }()
-  let commentTextField: UITextField = {
-    let t = UITextField()
-    t.placeholder = "댓글을 입력해주세요"
-    t.borderStyle = .none
-    t.font = .systemFont(ofSize: 14, weight: .bold)
-    t.layer.cornerRadius = 15
-    t.backgroundColor = .systemGray6
-    t.addLeftPadding()
-    return t
-  }()
-  
-  let doneButton: UIButton = {
-    let b = UIButton()
-    b.setTitle("작성", for: .normal)
-    b.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
-    b.tintColor = .white
-    b.backgroundColor = .mainGreenColor
-    b.layer.cornerRadius = 15
-    b.addTarget(self, action: #selector(onDone), for: .touchUpInside)
-    return b
-  }()
+  let toolbar = DetailToolbar()
   
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
@@ -76,8 +51,7 @@ class DetailPostViewController: BaseViewController {
   func setConstaints() {
     view.addSubview(tableView)
     view.addSubview(toolbar)
-    toolbar.addSubview(commentTextField)
-    toolbar.addSubview(doneButton)
+
     tableView.snp.makeConstraints {
       $0.leading.trailing.top.equalToSuperview()
       $0.bottom.equalTo(toolbar.snp.top)
@@ -88,21 +62,7 @@ class DetailPostViewController: BaseViewController {
       $0.bottom.equalTo(view.safeAreaLayoutGuide)
       $0.height.equalTo(Metric.toolbarHeight)
     }
-    
-    commentTextField.snp.makeConstraints {
-      $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
-      $0.trailing.equalTo(doneButton.snp.leading).offset(-5)
-      $0.centerY.equalTo(toolbar.snp.centerY)
-      $0.height.equalTo(Metric.textFieldHeight)
-    }
-    
-    doneButton.snp.makeConstraints {
-      $0.leading.equalTo(commentTextField.snp.trailing).offset(5)
-      $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
-      $0.centerY.equalTo(toolbar.snp.centerY)
-      $0.height.equalTo(Metric.textFieldHeight)
-      $0.width.equalTo(Metric.buttonWidth)
-    }
+
   }
   
   private func addKeyboardNotification() {
@@ -139,11 +99,6 @@ class DetailPostViewController: BaseViewController {
       toolbar.frame.origin.y += keyboardHeight
     }
   }
-  
-  @objc func onDone(_ sender: UIButton) {
-    commentTextField.resignFirstResponder()
-  }
-  
 }
 
 // MARK: - Extension
