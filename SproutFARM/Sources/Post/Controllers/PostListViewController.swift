@@ -56,9 +56,11 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.row % 2 == 0 {
       let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath)
+      cell.selectionStyle = .none
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath)
+      cell.selectionStyle = .none
       return cell
     }
   }
