@@ -10,12 +10,28 @@ import SnapKit
 
 class PostListViewController: BaseViewController {
   
+  // MARK: - Metric
+  struct Metric {
+    static let buttonHeight: CGFloat = 60
+  }
+  
   // MARK: - UI
   let tableView: UITableView = {
     let t = UITableView()
     t.cellLayoutMarginsFollowReadableWidth = false
     t.separatorInset.left = 0
     return t
+  }()
+  
+  let addButton: UIButton = {
+    let b = UIButton()
+    b.setImage(UIImage(systemName: "plus"), for: .normal)
+    b.tintColor = .white
+    b.backgroundColor = .mainGreenColor
+    b.layer.cornerRadius = 0.5 * Metric.buttonHeight
+    b.layer.shadowOffset = CGSize(width: 2, height: 2)
+    b.layer.shadowOpacity = 0.5
+    return b
   }()
   
   // MARK: - View Life-Cycle
@@ -38,8 +54,15 @@ class PostListViewController: BaseViewController {
   
   func setConstaints() {
     view.addSubview(tableView)
+    view.addSubview(addButton)
+    
     tableView.snp.makeConstraints {
       $0.edges.equalToSuperview()
+    }
+    
+    addButton.snp.makeConstraints {
+      $0.trailing.bottom.equalToSuperview().offset(-30)
+      $0.width.height.equalTo(Metric.buttonHeight)
     }
   }
   
