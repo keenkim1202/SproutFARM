@@ -1,14 +1,14 @@
 //
-//  PostListCommentCell.swift
+//  CommentListCell.swift
 //  SproutFARM
 //
-//  Created by KEEN on 2022/01/04.
+//  Created by KEEN on 2022/01/05.
 //
 
 import UIKit
 import SnapKit
 
-class PostListCommentCell: UITableViewCell {
+class CommentListCell: UITableViewCell {
   
   // MARK: - Metric
   struct Metric {
@@ -17,23 +17,35 @@ class PostListCommentCell: UITableViewCell {
   }
   
   // MARK: - Property
-  static let identifier = "PostListCommentCell"
+  static let identifier = "CommentListCell"
   
   // MARK: - UI
-  let commentImageView: UIImageView = {
-    let i = UIImageView()
-    i.image = UIImage(systemName: "bubble.right")
-    i.contentMode = .scaleAspectFit
-    i.tintColor = .systemGray
-    return i
+  let nicknameLabel: UILabel = {
+    let l = UILabel()
+    l.text = "nickname"
+    l.font = .systemFont(ofSize: 13, weight: .bold)
+    l.textColor = .lightGray
+    return l
   }()
   
-  let label: UILabel = {
+  let contentLabel: UILabel = {
     let l = UILabel()
-    l.text = "댓글쓰기"
-    l.font = .systemFont(ofSize: 13, weight: .medium)
+    l.text = "댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다."
+    l.font = .systemFont(ofSize: 12, weight: .regular)
     l.textColor = .systemGray
     return l
+  }()
+  
+  let editButton: UIButton = {
+    let b = UIButton()
+    return b
+  }()
+  
+  let stackView: UIStackView = {
+    let s = UIStackView()
+    s.axis = .horizontal
+    s.spacing = 5
+    return s
   }()
   
   // MARK: - Init
@@ -51,20 +63,21 @@ class PostListCommentCell: UITableViewCell {
   
   // MARK: - Configure
   private func createViews() {
-    addSubview(commentImageView)
-    addSubview(label)
+    addSubview(editButton)
+    addSubview(stackView)
+    stackView.addSubview(nicknameLabel)
+    stackView.addSubview(contentLabel)
   }
   
   private func setConstraints() {
-    commentImageView.snp.makeConstraints {
+    stackView.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
       $0.top.equalToSuperview().offset(Metric.topBottomInset)
       $0.bottom.equalToSuperview().offset(-Metric.topBottomInset)
-      $0.width.equalTo(commentImageView.snp.height)
     }
     
-    label.snp.makeConstraints {
-      $0.leading.equalTo(commentImageView.snp.trailing).offset(Metric.leadingTrailingInset)
+    editButton.snp.makeConstraints {
+      $0.leading.equalTo(stackView.snp.trailing).offset(Metric.leadingTrailingInset)
       $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
       $0.top.equalToSuperview().offset(Metric.topBottomInset)
       $0.bottom.equalToSuperview().offset(-Metric.topBottomInset)

@@ -24,14 +24,18 @@ class PostListViewController: BaseViewController {
     
     self.title = "새싹 농장"
 
+    setTableView()
+    setConstaints()
+  }
+
+  // MARK: - Configure
+  func setTableView() {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
     tableView.register(PostListCommentCell.self, forCellReuseIdentifier: PostListCommentCell.identifier)
-    setConstaints()
   }
   
-  // MARK: - Configure
   func setConstaints() {
     view.addSubview(tableView)
     tableView.snp.makeConstraints {
@@ -57,5 +61,9 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
       let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath)
       return cell
     }
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.navigationController?.pushViewController(DetailPostViewController(), animated: true)
   }
 }

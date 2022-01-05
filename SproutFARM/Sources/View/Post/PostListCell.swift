@@ -12,7 +12,8 @@ class PostListCell: UITableViewCell {
   
   // MARK: - Metric
   struct Metric {
-    static let cellPadding: CGFloat = 15
+    static let leadingTrailingInset: CGFloat = 15
+    static let topBottomInset: CGFloat = 15
     static let labelPadding: CGFloat = 10
   }
   
@@ -75,7 +76,7 @@ class PostListCell: UITableViewCell {
   
   private func setConstraints() {
     nicknameView.snp.makeConstraints {
-      $0.leading.top.equalToSuperview().offset(Metric.cellPadding)
+      $0.leading.top.equalToSuperview().offset(Metric.topBottomInset)
       $0.width.equalTo(nicknameLabel.snp.width).offset(Metric.labelPadding)
       $0.height.equalTo(nicknameLabel.snp.height).offset(Metric.labelPadding)
     }
@@ -85,16 +86,16 @@ class PostListCell: UITableViewCell {
     }
     
     contentLabel.snp.makeConstraints {
-      $0.leading.equalToSuperview().offset(Metric.cellPadding)
-      $0.trailing.equalToSuperview().offset(-Metric.cellPadding)
-      $0.top.equalTo(nicknameView.snp.bottom).offset(Metric.cellPadding)
+      $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
+      $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
+      $0.top.equalTo(nicknameView.snp.bottom).offset(Metric.topBottomInset)
     }
     
     dateLabel.snp.makeConstraints {
-      $0.leading.equalToSuperview().offset(Metric.cellPadding)
-      $0.trailing.equalToSuperview().offset(-Metric.cellPadding)
-      $0.top.equalTo(contentLabel.snp.bottom).offset(Metric.cellPadding)
-      $0.bottom.equalToSuperview().offset(-Metric.cellPadding)
+      $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
+      $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
+      $0.top.equalTo(contentLabel.snp.bottom).offset(Metric.topBottomInset)
+      $0.bottom.equalToSuperview().offset(-Metric.topBottomInset)
     }
     
   }
