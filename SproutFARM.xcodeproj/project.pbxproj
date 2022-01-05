@@ -33,9 +33,12 @@
 		1CE842D12783E69B003259A1 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D02783E69B003259A1 /* RegisterView.swift */; };
 		1CE842D32783E6A2003259A1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D22783E6A2003259A1 /* LoginView.swift */; };
 		1CE842D52783EB74003259A1 /* UITextField++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D42783EB74003259A1 /* UITextField++Extension.swift */; };
+		B994B923667C3CC9126486C4 /* Pods_SproutFARM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04481C657972D5685A994BD4 /* Pods_SproutFARM.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04481C657972D5685A994BD4 /* Pods_SproutFARM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SproutFARM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SproutFARM.release.xcconfig"; path = "Target Support Files/Pods-SproutFARM/Pods-SproutFARM.release.xcconfig"; sourceTree = "<group>"; };
 		1C58C7CF27842B3500CC3F50 /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
 		1C58C7D127842B4C00CC3F50 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
 		1C58C7D327842B5A00CC3F50 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		1CE842D02783E69B003259A1 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		1CE842D22783E6A2003259A1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1CE842D42783EB74003259A1 /* UITextField++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField++Extension.swift"; sourceTree = "<group>"; };
+		C502733EC129971EC4D74F0C /* Pods-SproutFARM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SproutFARM.debug.xcconfig"; path = "Target Support Files/Pods-SproutFARM/Pods-SproutFARM.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,17 +75,68 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CE8429C27828672003259A1 /* SnapKit in Frameworks */,
+				B994B923667C3CC9126486C4 /* Pods_SproutFARM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CC9A7072785DC5C00914655 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1C58C7CF27842B3500CC3F50 /* PostListCell.swift */,
+				1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */,
+				1CC9A7022785C62200914655 /* ProfileCell.swift */,
+				1CC9A7042785C9D200914655 /* CommentListCell.swift */,
+				1C58C7D127842B4C00CC3F50 /* DetailPostView.swift */,
+				1C58C7D327842B5A00CC3F50 /* PostView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1CC9A7082785DC7000914655 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1CC9A7092785DC9C00914655 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1CE842902782827D003259A1 /* IntroViewController.swift */,
+				1CE84280278280DE003259A1 /* RegisterViewController.swift */,
+				1CE8426A27827F0E003259A1 /* LoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1CC9A70A2785DCA400914655 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8428627828186003259A1 /* PostListViewController.swift */,
+				1CE8428427828180003259A1 /* DetailPostViewController.swift */,
+				1CE8428227828179003259A1 /* PostViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1CC9A70B2785DCAB00914655 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8428B278281C7003259A1 /* EditCommentViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		1CE8425A27827F0E003259A1 = {
 			isa = PBXGroup;
 			children = (
 				1CE8426527827F0E003259A1 /* SproutFARM */,
 				1CE8426427827F0E003259A1 /* Products */,
+				DE6F56EAEEFC12092F1C8951 /* Pods */,
+				22C4B20C4A82C9C790D8EC6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,15 +158,14 @@
 			path = SproutFARM;
 			sourceTree = "<group>";
 		};
-		1CE8427A27828054003259A1 /* View */ = {
+		1CE8427A27828054003259A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1CE842922782829B003259A1 /* BaseViewController.swift */,
-				1CE84289278281A5003259A1 /* Login */,
-				1CE842882782818A003259A1 /* Post */,
-				1CE8428A278281BC003259A1 /* Comment */,
+				1CE842CE2783E4FB003259A1 /* IntroView.swift */,
+				1CE842D02783E69B003259A1 /* RegisterView.swift */,
+				1CE842D22783E6A2003259A1 /* LoginView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1CE8427B2782806C003259A1 /* ViewModel */ = {
@@ -142,11 +196,14 @@
 			children = (
 				1CE8426627827F0E003259A1 /* AppDelegate.swift */,
 				1CE8426827827F0E003259A1 /* SceneDelegate.swift */,
+				1CE842922782829B003259A1 /* BaseViewController.swift */,
 				1CE84295278283A4003259A1 /* Extension */,
 				1CE842942782839C003259A1 /* Service */,
 				1CE8427C27828070003259A1 /* Model */,
 				1CE8427B2782806C003259A1 /* ViewModel */,
-				1CE8427A27828054003259A1 /* View */,
+				1CE84289278281A5003259A1 /* Login */,
+				1CE842882782818A003259A1 /* Post */,
+				1CE8428A278281BC003259A1 /* Comment */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -162,15 +219,8 @@
 		1CE842882782818A003259A1 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				1CE8428627828186003259A1 /* PostListViewController.swift */,
-				1C58C7CF27842B3500CC3F50 /* PostListCell.swift */,
-				1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */,
-				1CC9A7022785C62200914655 /* ProfileCell.swift */,
-				1CC9A7042785C9D200914655 /* CommentListCell.swift */,
-				1CE8428427828180003259A1 /* DetailPostViewController.swift */,
-				1C58C7D127842B4C00CC3F50 /* DetailPostView.swift */,
-				1CE8428227828179003259A1 /* PostViewController.swift */,
-				1C58C7D327842B5A00CC3F50 /* PostView.swift */,
+				1CC9A70A2785DCA400914655 /* Controllers */,
+				1CC9A7072785DC5C00914655 /* Views */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -178,12 +228,8 @@
 		1CE84289278281A5003259A1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				1CE842902782827D003259A1 /* IntroViewController.swift */,
-				1CE84280278280DE003259A1 /* RegisterViewController.swift */,
-				1CE8426A27827F0E003259A1 /* LoginViewController.swift */,
-				1CE842CE2783E4FB003259A1 /* IntroView.swift */,
-				1CE842D02783E69B003259A1 /* RegisterView.swift */,
-				1CE842D22783E6A2003259A1 /* LoginView.swift */,
+				1CC9A7092785DC9C00914655 /* Controllers */,
+				1CE8427A27828054003259A1 /* Views */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -191,7 +237,8 @@
 		1CE8428A278281BC003259A1 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				1CE8428B278281C7003259A1 /* EditCommentViewController.swift */,
+				1CC9A70B2785DCAB00914655 /* Controllers */,
+				1CC9A7082785DC7000914655 /* Views */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -214,6 +261,23 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		22C4B20C4A82C9C790D8EC6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04481C657972D5685A994BD4 /* Pods_SproutFARM.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE6F56EAEEFC12092F1C8951 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C502733EC129971EC4D74F0C /* Pods-SproutFARM.debug.xcconfig */,
+				072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,9 +285,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1CE8427727827F0F003259A1 /* Build configuration list for PBXNativeTarget "SproutFARM" */;
 			buildPhases = (
+				0DE808B3A7B07B4CEA20706A /* [CP] Check Pods Manifest.lock */,
 				1CE8425F27827F0E003259A1 /* Sources */,
 				1CE8426027827F0E003259A1 /* Frameworks */,
 				1CE8426127827F0E003259A1 /* Resources */,
+				CB7FFE9FC38DF312EFFD5A87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,6 +350,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DE808B3A7B07B4CEA20706A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SproutFARM-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB7FFE9FC38DF312EFFD5A87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SproutFARM/Pods-SproutFARM-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SproutFARM/Pods-SproutFARM-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SproutFARM/Pods-SproutFARM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1CE8425F27827F0E003259A1 /* Sources */ = {
@@ -448,6 +556,7 @@
 		};
 		1CE8427827827F0F003259A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C502733EC129971EC4D74F0C /* Pods-SproutFARM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -475,6 +584,7 @@
 		};
 		1CE8427927827F0F003259A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

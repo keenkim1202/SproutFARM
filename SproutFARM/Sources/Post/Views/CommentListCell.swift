@@ -24,28 +24,23 @@ class CommentListCell: UITableViewCell {
     let l = UILabel()
     l.text = "nickname"
     l.font = .systemFont(ofSize: 13, weight: .bold)
-    l.textColor = .lightGray
     return l
   }()
   
   let contentLabel: UILabel = {
     let l = UILabel()
     l.text = "댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다."
+    l.numberOfLines = 0
     l.font = .systemFont(ofSize: 12, weight: .regular)
-    l.textColor = .systemGray
     return l
   }()
   
   let editButton: UIButton = {
     let b = UIButton()
+    b.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+    b.tintColor = .darkGray
+    b.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
     return b
-  }()
-  
-  let stackView: UIStackView = {
-    let s = UIStackView()
-    s.axis = .horizontal
-    s.spacing = 5
-    return s
   }()
   
   // MARK: - Init
@@ -63,24 +58,34 @@ class CommentListCell: UITableViewCell {
   
   // MARK: - Configure
   private func createViews() {
+    addSubview(nicknameLabel)
+    addSubview(contentLabel)
     addSubview(editButton)
-    addSubview(stackView)
-    stackView.addSubview(nicknameLabel)
-    stackView.addSubview(contentLabel)
   }
   
   private func setConstraints() {
-    stackView.snp.makeConstraints {
+    
+    nicknameLabel.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
+      $0.trailing.equalTo(editButton.snp.leading).offset(-Metric.leadingTrailingInset)
       $0.top.equalToSuperview().offset(Metric.topBottomInset)
+      $0.bottom.equalTo(contentLabel.snp.top).offset(-Metric.topBottomInset)
+    }
+    
+    contentLabel.snp.makeConstraints {
+      $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
+      $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
+      $0.top.equalTo(nicknameLabel.snp.bottom).offset(Metric.topBottomInset)
       $0.bottom.equalToSuperview().offset(-Metric.topBottomInset)
     }
     
     editButton.snp.makeConstraints {
-      $0.leading.equalTo(stackView.snp.trailing).offset(Metric.leadingTrailingInset)
+      $0.leading.equalTo(nicknameLabel.snp.trailing).offset(Metric.leadingTrailingInset)
       $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
       $0.top.equalToSuperview().offset(Metric.topBottomInset)
-      $0.bottom.equalToSuperview().offset(-Metric.topBottomInset)
+      $0.width.equalTo(nicknameLabel.snp.height)
+      $0.height.equalTo(editButton.snp.width)
+      
     }
   }
 }
