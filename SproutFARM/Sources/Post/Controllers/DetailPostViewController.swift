@@ -97,24 +97,6 @@ class DetailPostViewController: BaseViewController {
       toolbar.frame.origin.y += keyboardHeight
     }
   }
-  
-  func showAlertMenu() {
-    let alertMenu = UIAlertController(title: nil, message: "댓글 관리", preferredStyle: .actionSheet)
-    
-    let updateAction = UIAlertAction(title: "수정", style: .default, handler: {
-      (alert: UIAlertAction!) -> Void in
-    })
-    let deleteAction = UIAlertAction(title: "삭제", style: .destructive, handler: {
-      (alert: UIAlertAction!) -> Void in
-    })
-    let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-    
-    alertMenu.addAction(updateAction)
-    alertMenu.addAction(deleteAction)
-    alertMenu.addAction(cancelAction)
-    
-    self.present(alertMenu, animated: true, completion: nil)
-  }
 }
 
 // MARK: - Extension
@@ -145,7 +127,7 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row > 2 {
-      showAlertMenu()
+      showAlertMenu(message: "댓글 관리")
     }
   }
 }
