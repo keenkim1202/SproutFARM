@@ -62,14 +62,12 @@ class DetailToolbar: UIView {
   
   // MARK: - Configure
   private func createViews() {
-    
-  }
-  
-  private func setConstraints() {
     addSubview(toolbar)
     toolbar.addSubview(commentTextField)
     toolbar.addSubview(doneButton)
-    
+  }
+  
+  private func setConstraints() {
     toolbar.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.bottom.equalTo(safeAreaLayoutGuide)
@@ -92,6 +90,7 @@ class DetailToolbar: UIView {
     }
   }
   
+  // MARK: - Action
   @objc func onDone(_ sender: UIButton) {
     commentTextField.resignFirstResponder()
   }

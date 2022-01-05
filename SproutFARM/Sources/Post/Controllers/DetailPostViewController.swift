@@ -11,9 +11,6 @@ class DetailPostViewController: BaseViewController {
   
   // MARK: - Metric
   struct Metric {
-    static let leadingTrailingInset: CGFloat = 20
-    static let textFieldHeight: CGFloat = 35
-    static let buttonWidth: CGFloat = 55
     static let toolbarHeight: CGFloat = 50
   }
   
