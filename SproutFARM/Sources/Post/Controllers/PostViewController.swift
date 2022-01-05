@@ -10,6 +10,15 @@ import SnapKit
 
 class PostViewController: BaseViewController {
   
+  // MARK: = Enum
+  enum ViewType {
+    case add
+    case update
+  }
+  
+  // MARK: - Properties
+  var viewType: ViewType = .add
+  
   // MARK: - UI
   let textView: UITextView = {
     let t = UITextView()
@@ -22,7 +31,12 @@ class PostViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.title = "새싹농장 글쓰기"
+    if viewType == .add {
+      self.title = "새싹농장 글쓰기"
+    } else {
+      self.title = "댓글 수정하기"
+    }
+    
     self.navigationController?.setNavigationBarHidden(false, animated: true)
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onDone))
     setConstraints()

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1C58C7D027842B3500CC3F50 /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7CF27842B3500CC3F50 /* PostListCell.swift */; };
 		1C58C7D227842B4C00CC3F50 /* DetailToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */; };
-		1C58C7D427842B5A00CC3F50 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D327842B5A00CC3F50 /* PostView.swift */; };
 		1C58C7D627842CE200CC3F50 /* PostListCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */; };
 		1CC9A7032785C62200914655 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7022785C62200914655 /* ProfileCell.swift */; };
 		1CC9A7052785C9D200914655 /* CommentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7042785C9D200914655 /* CommentListCell.swift */; };
@@ -41,7 +40,6 @@
 		072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SproutFARM.release.xcconfig"; path = "Target Support Files/Pods-SproutFARM/Pods-SproutFARM.release.xcconfig"; sourceTree = "<group>"; };
 		1C58C7CF27842B3500CC3F50 /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
 		1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailToolbar.swift; sourceTree = "<group>"; };
-		1C58C7D327842B5A00CC3F50 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCommentCell.swift; sourceTree = "<group>"; };
 		1CC9A7022785C62200914655 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		1CC9A7042785C9D200914655 /* CommentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListCell.swift; sourceTree = "<group>"; };
@@ -90,14 +88,6 @@
 				1CC9A7022785C62200914655 /* ProfileCell.swift */,
 				1CC9A7042785C9D200914655 /* CommentListCell.swift */,
 				1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */,
-				1C58C7D327842B5A00CC3F50 /* PostView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		1CC9A7082785DC7000914655 /* Views */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,13 +108,6 @@
 				1CE8428627828186003259A1 /* PostListViewController.swift */,
 				1CE8428427828180003259A1 /* DetailPostViewController.swift */,
 				1CE8428227828179003259A1 /* PostViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		1CC9A70B2785DCAB00914655 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
 				1CE8428B278281C7003259A1 /* EditCommentViewController.swift */,
 			);
 			path = Controllers;
@@ -203,7 +186,6 @@
 				1CE8427B2782806C003259A1 /* ViewModel */,
 				1CE84289278281A5003259A1 /* Login */,
 				1CE842882782818A003259A1 /* Post */,
-				1CE8428A278281BC003259A1 /* Comment */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -232,15 +214,6 @@
 				1CE8427A27828054003259A1 /* Views */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		1CE8428A278281BC003259A1 /* Comment */ = {
-			isa = PBXGroup;
-			children = (
-				1CC9A70B2785DCAB00914655 /* Controllers */,
-				1CC9A7082785DC7000914655 /* Views */,
-			);
-			path = Comment;
 			sourceTree = "<group>";
 		};
 		1CE842942782839C003259A1 /* Service */ = {
@@ -419,7 +392,6 @@
 				1CE8428F27828225003259A1 /* APIService.swift in Sources */,
 				1CE842D32783E6A2003259A1 /* LoginView.swift in Sources */,
 				1C58C7D027842B3500CC3F50 /* PostListCell.swift in Sources */,
-				1C58C7D427842B5A00CC3F50 /* PostView.swift in Sources */,
 				1CE8428527828180003259A1 /* DetailPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
