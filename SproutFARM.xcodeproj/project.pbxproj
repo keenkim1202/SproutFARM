@@ -15,6 +15,9 @@
 		1CC9A70D278611E400914655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A70C278611E400914655 /* User.swift */; };
 		1CC9A7102786D14A00914655 /* URLSession++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A70F2786D14A00914655 /* URLSession++Extension.swift */; };
 		1CC9A7132786D4B100914655 /* UIAlert++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7122786D4B100914655 /* UIAlert++Extension.swift */; };
+		1CC9A7152786E1BA00914655 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7142786E1BA00914655 /* Post.swift */; };
+		1CC9A7172786E26300914655 /* DateFormatter++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7162786E26300914655 /* DateFormatter++Extension.swift */; };
+		1CC9A7192786E46F00914655 /* EditCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7182786E46F00914655 /* EditCommentView.swift */; };
 		1CE8426727827F0E003259A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426627827F0E003259A1 /* AppDelegate.swift */; };
 		1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426827827F0E003259A1 /* SceneDelegate.swift */; };
 		1CE8426B27827F0E003259A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426A27827F0E003259A1 /* LoginViewController.swift */; };
@@ -49,6 +52,9 @@
 		1CC9A70C278611E400914655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1CC9A70F2786D14A00914655 /* URLSession++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession++Extension.swift"; sourceTree = "<group>"; };
 		1CC9A7122786D4B100914655 /* UIAlert++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlert++Extension.swift"; sourceTree = "<group>"; };
+		1CC9A7142786E1BA00914655 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		1CC9A7162786E26300914655 /* DateFormatter++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extension.swift"; sourceTree = "<group>"; };
+		1CC9A7182786E46F00914655 /* EditCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentView.swift; sourceTree = "<group>"; };
 		1CE8426327827F0E003259A1 /* SproutFARM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SproutFARM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE8426627827F0E003259A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CE8426827827F0E003259A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 				1CC9A7022785C62200914655 /* ProfileCell.swift */,
 				1CC9A7042785C9D200914655 /* CommentListCell.swift */,
 				1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */,
+				1CC9A7182786E46F00914655 /* EditCommentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				1CC9A70C278611E400914655 /* User.swift */,
+				1CC9A7142786E1BA00914655 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +237,7 @@
 				1CE84296278283EC003259A1 /* UIImage++Extension.swift */,
 				1CC9A70F2786D14A00914655 /* URLSession++Extension.swift */,
 				1CC9A7122786D4B100914655 /* UIAlert++Extension.swift */,
+				1CC9A7162786E26300914655 /* DateFormatter++Extension.swift */,
 				1CE842D42783EB74003259A1 /* UITextField++Extension.swift */,
 				1CE842982782844C003259A1 /* UIColor++Extension.swift */,
 			);
@@ -376,6 +385,7 @@
 				1CE842992782844C003259A1 /* UIColor++Extension.swift in Sources */,
 				1CE8426B27827F0E003259A1 /* LoginViewController.swift in Sources */,
 				1CC9A7032785C62200914655 /* ProfileCell.swift in Sources */,
+				1CC9A7192786E46F00914655 /* EditCommentView.swift in Sources */,
 				1C58C7D227842B4C00CC3F50 /* DetailToolbar.swift in Sources */,
 				1CC9A7052785C9D200914655 /* CommentListCell.swift in Sources */,
 				1CE842932782829B003259A1 /* BaseViewController.swift in Sources */,
@@ -387,8 +397,10 @@
 				1C58C7D627842CE200CC3F50 /* PostListCommentCell.swift in Sources */,
 				1CE842CF2783E4FB003259A1 /* IntroView.swift in Sources */,
 				1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */,
+				1CC9A7172786E26300914655 /* DateFormatter++Extension.swift in Sources */,
 				1CE842912782827D003259A1 /* IntroViewController.swift in Sources */,
 				1CE84281278280DE003259A1 /* RegisterViewController.swift in Sources */,
+				1CC9A7152786E1BA00914655 /* Post.swift in Sources */,
 				1CC9A7132786D4B100914655 /* UIAlert++Extension.swift in Sources */,
 				1CE8428327828179003259A1 /* PostViewController.swift in Sources */,
 				1CE842D52783EB74003259A1 /* UITextField++Extension.swift in Sources */,

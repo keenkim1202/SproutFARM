@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class BaseViewController: UIViewController {
   
@@ -26,9 +27,13 @@ class BaseViewController: UIViewController {
     
     let updateAction = UIAlertAction(title: "수정", style: .default, handler: {
       (alert: UIAlertAction!) -> Void in
+      let vc = EditCommentViewController()
+      // TODO: Comment 정보 넘겨주기
+      self.navigationController?.pushViewController(vc, animated: true)
     })
     let deleteAction = UIAlertAction(title: "삭제", style: .destructive, handler: {
       (alert: UIAlertAction!) -> Void in
+      // TODO: "정말 삭제하시겠습니까?" alert 띄우기
     })
     let cancelAction = UIAlertAction(title: "취소", style: .cancel)
     
@@ -43,23 +48,5 @@ class BaseViewController: UIViewController {
     self.navigationController?.navigationBar.titleTextAttributes = [
       NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 15)!
     ]
-    // 
-    // let BarButtonTextAttributes: [NSAttributedString.Key: Any] = [
-    //     .font: UIFont(name: "HelveticaNeue-Bold", size: 10)!
-    // ]
-    // 
-    // if let leftBarButtons = self.navigationItem.leftBarButtonItems {
-    //   for button in leftBarButtons {
-    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .normal)
-    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .highlighted)
-    //   }
-    // }
-    // 
-    // if let rightBarButtons = self.navigationItem.rightBarButtonItems {
-    //   for button in rightBarButtons {
-    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .normal)
-    //     button.setTitleTextAttributes(BarButtonTextAttributes, for: .highlighted)
-    //   }
-    // }
   }
 }

@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import SnapKit
+
+// TODO: Pagination 구현하기
 
 class PostListViewController: BaseViewController {
   
@@ -14,6 +15,10 @@ class PostListViewController: BaseViewController {
   struct Metric {
     static let buttonHeight: CGFloat = 60
   }
+  
+  // MARK: - Properties
+  var user: User?
+  var postList: [Post] = []
   
   // MARK: - UI
   let tableView: UITableView = {
@@ -45,6 +50,21 @@ class PostListViewController: BaseViewController {
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
     setTableView()
     setConstaints()
+    
+    guard let user = user else { return }
+    APIService.fetchPosts(token: user.jwt) { post, error in
+      guard error == nil else {
+        UIAlertController.showAlert(self, contentType: .failToFetch, message: "데이터를 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
+        return
+      }
+      
+      guard let post = post else {
+        print("post 없음")
+        return
+      }
+      print("post - ", post.text)
+      // postList.append(post)
+    }
   }
 
   // MARK: - Configure

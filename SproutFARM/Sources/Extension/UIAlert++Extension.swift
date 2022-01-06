@@ -10,9 +10,12 @@ import UIKit
 extension UIAlertController {
   enum ContentType: String {
     case failToLogin = "로그인 실패"
+    case successToSignUp = "회원가입 성공"
+    case failToSignUp = "회원가입 실패"
+    case failToFetch = "데이터 로드 실패"
   }
   
-  static func show(_ presentedHost: UIViewController,
+  static func showAlert(_ presentedHost: UIViewController,
                    contentType: ContentType,
                    message: String) {
     let alert = UIAlertController(
@@ -21,6 +24,21 @@ extension UIAlertController {
       preferredStyle: .alert)
     let okAction = UIAlertAction(
       title: "확인", style: .default, handler: nil)
+    alert.addAction(okAction)
+    presentedHost.present(alert, animated: true, completion: nil)
+  }
+  
+  static func sucessAlert(_ presentedHost: UIViewController,
+                          contentType: ContentType,
+                          message: String) {
+    let alert = UIAlertController(
+      title: contentType.rawValue,
+      message: message,
+      preferredStyle: .alert)
+    
+    let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+      presentedHost.navigationController?.popViewController(animated: true)
+    }
     alert.addAction(okAction)
     presentedHost.present(alert, animated: true, completion: nil)
   }

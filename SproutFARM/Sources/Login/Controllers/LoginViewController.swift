@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class LoginViewController: BaseViewController {
 
@@ -33,23 +32,24 @@ class LoginViewController: BaseViewController {
   // MARK: - Action
   @objc func onLogin() {
     print("login")
+    
     // login success
-    
-    
     let email = loginView.emailTextField.text!
     let password = loginView.passwordTextField.text!
     APIService.login(email: email, password: password) { user, error in
       guard error == nil else {
         // login fail
         print("login failed")
-        UIAlertController.show(self, contentType: .failToLogin, message: "이메일과 비밀번호를 확인해주세요.")
+        UIAlertController.showAlert(self, contentType: .failToLogin, message: "이메일과 비밀번호를 확인해주세요.")
         return
       }
 
       // login success
       print("login success")
-      self.navigationController?.pushViewController(PostListViewController(), animated: true)
+      let postListVC = PostListViewController()
+      postListVC.user = user
+      
+      self.navigationController?.pushViewController(postListVC, animated: true)
     }
-    
   }
 }
