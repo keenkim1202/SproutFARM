@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C475ABE2786ED370075C431 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C475ABD2786ED370075C431 /* PostViewModel.swift */; };
+		1C475AC12786ED550075C431 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C475AC02786ED550075C431 /* Observable.swift */; };
+		1C475AC32786F1700075C431 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C475AC22786F1700075C431 /* Comment.swift */; };
 		1C58C7D027842B3500CC3F50 /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7CF27842B3500CC3F50 /* PostListCell.swift */; };
 		1C58C7D227842B4C00CC3F50 /* DetailToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */; };
 		1C58C7D627842CE200CC3F50 /* PostListCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */; };
@@ -44,6 +47,9 @@
 /* Begin PBXFileReference section */
 		04481C657972D5685A994BD4 /* Pods_SproutFARM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SproutFARM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SproutFARM.release.xcconfig"; path = "Target Support Files/Pods-SproutFARM/Pods-SproutFARM.release.xcconfig"; sourceTree = "<group>"; };
+		1C475ABD2786ED370075C431 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		1C475AC02786ED550075C431 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		1C475AC22786F1700075C431 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		1C58C7CF27842B3500CC3F50 /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
 		1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailToolbar.swift; sourceTree = "<group>"; };
 		1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCommentCell.swift; sourceTree = "<group>"; };
@@ -92,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C475ABF2786ED3B0075C431 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1C475ABD2786ED370075C431 /* PostViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1CC9A7072785DC5C00914655 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +183,7 @@
 			children = (
 				1CC9A70C278611E400914655 /* User.swift */,
 				1CC9A7142786E1BA00914655 /* Post.swift */,
+				1C475AC22786F1700075C431 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,6 +223,7 @@
 		1CE842882782818A003259A1 /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				1C475ABF2786ED3B0075C431 /* ViewModel */,
 				1CC9A70A2785DCA400914655 /* Controllers */,
 				1CC9A7072785DC5C00914655 /* Views */,
 			);
@@ -227,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				1CE8428E27828225003259A1 /* APIService.swift */,
+				1C475AC02786ED550075C431 /* Observable.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -397,6 +414,7 @@
 				1C58C7D627842CE200CC3F50 /* PostListCommentCell.swift in Sources */,
 				1CE842CF2783E4FB003259A1 /* IntroView.swift in Sources */,
 				1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */,
+				1C475AC12786ED550075C431 /* Observable.swift in Sources */,
 				1CC9A7172786E26300914655 /* DateFormatter++Extension.swift in Sources */,
 				1CE842912782827D003259A1 /* IntroViewController.swift in Sources */,
 				1CE84281278280DE003259A1 /* RegisterViewController.swift in Sources */,
@@ -405,6 +423,8 @@
 				1CE8428327828179003259A1 /* PostViewController.swift in Sources */,
 				1CE842D52783EB74003259A1 /* UITextField++Extension.swift in Sources */,
 				1CE8428F27828225003259A1 /* APIService.swift in Sources */,
+				1C475AC32786F1700075C431 /* Comment.swift in Sources */,
+				1C475ABE2786ED370075C431 /* PostViewModel.swift in Sources */,
 				1CE842D32783E6A2003259A1 /* LoginView.swift in Sources */,
 				1C58C7D027842B3500CC3F50 /* PostListCell.swift in Sources */,
 				1CE8428527828180003259A1 /* DetailPostViewController.swift in Sources */,

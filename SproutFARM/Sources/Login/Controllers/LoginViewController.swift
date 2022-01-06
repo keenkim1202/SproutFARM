@@ -34,8 +34,10 @@ class LoginViewController: BaseViewController {
     print("login")
     
     // login success
-    let email = loginView.emailTextField.text!
-    let password = loginView.passwordTextField.text!
+    let email = "A123@naver.com"
+    let password = "123"
+    // let email = loginView.emailTextField.text!
+    // let password = loginView.passwordTextField.text!
     APIService.login(email: email, password: password) { user, error in
       guard error == nil else {
         // login fail

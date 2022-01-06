@@ -17,8 +17,11 @@ class PostListViewController: BaseViewController {
   }
   
   // MARK: - Properties
+  // private var viewModel = PostViewModel()
   var user: User?
-  var postList: [Post] = []
+  var postList: [FramPost] = []
+  var start: Int = 0
+  let limit: Int = 10
   
   // MARK: - UI
   let tableView: UITableView = {
@@ -51,18 +54,26 @@ class PostListViewController: BaseViewController {
     setTableView()
     setConstaints()
     
+    // self.viewModel.user = user
+    // self.viewModel.fetchPosts()
+    //
+    // viewModel.post?.bind { post in
+    //   self.tableView.reloadData()
+    // }
     guard let user = user else { return }
-    APIService.fetchPosts(token: user.jwt) { post, error in
+    print("user OK")
+    APIService.fetchPosts(token: user.jwt, start: start, limit: limit) { post, error in
       guard error == nil else {
+        print("ERROR -\(error)")
         UIAlertController.showAlert(self, contentType: .failToFetch, message: "데이터를 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
         return
       }
-      
+    
       guard let post = post else {
         print("post 없음")
         return
       }
-      print("post - ", post.text)
+
       // postList.append(post)
     }
   }
@@ -98,7 +109,7 @@ class PostListViewController: BaseViewController {
 // MARK: - Extension
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 20 // test
+    return 20
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

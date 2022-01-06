@@ -1,5 +1,5 @@
 //
-//  Post.swift
+//  Comment.swift
 //  SproutFARM
 //
 //  Created by KEEN on 2022/01/06.
@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct FramPost: Codable {
+struct Comment: Codable {
   let id: Int
-  let text: String
-  let user: User
+  let comment: String
+  let user: Int
+  let post: Int
   let createdAt: String
   let updatedAt: String
-  let comments: [Comment]
   
   enum CodingKeys: String, CodingKey {
-    case id, text, user, comments
+    case id, comment, user, post
     case createdAt = "created_at"
     case updatedAt = "updated_at"
   }
 }
 
-typealias PostInfo = [FramPost]
+typealias CommentInfo = [Comment]
