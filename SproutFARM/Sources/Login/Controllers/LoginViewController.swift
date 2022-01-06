@@ -34,9 +34,22 @@ class LoginViewController: BaseViewController {
   @objc func onLogin() {
     print("login")
     // login success
-    self.navigationController?.pushViewController(PostListViewController(), animated: true)
     
-    // login fail
-    // alert
+    
+    let email = loginView.emailTextField.text!
+    let password = loginView.passwordTextField.text!
+    APIService.login(email: email, password: password) { user, error in
+      guard error == nil else {
+        // login fail
+        print("login failed")
+        UIAlertController.show(self, contentType: .failToLogin, message: "이메일과 비밀번호를 확인해주세요.")
+        return
+      }
+
+      // login success
+      print("login success")
+      self.navigationController?.pushViewController(PostListViewController(), animated: true)
+    }
+    
   }
 }
