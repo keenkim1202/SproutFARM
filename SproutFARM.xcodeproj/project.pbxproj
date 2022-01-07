@@ -41,12 +41,10 @@
 		1CE842D12783E69B003259A1 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D02783E69B003259A1 /* RegisterView.swift */; };
 		1CE842D32783E6A2003259A1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D22783E6A2003259A1 /* LoginView.swift */; };
 		1CE842D52783EB74003259A1 /* UITextField++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE842D42783EB74003259A1 /* UITextField++Extension.swift */; };
-		B994B923667C3CC9126486C4 /* Pods_SproutFARM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04481C657972D5685A994BD4 /* Pods_SproutFARM.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04481C657972D5685A994BD4 /* Pods_SproutFARM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SproutFARM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SproutFARM.release.xcconfig"; path = "Target Support Files/Pods-SproutFARM/Pods-SproutFARM.release.xcconfig"; sourceTree = "<group>"; };
 		1C475ABD2786ED370075C431 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		1C475AC02786ED550075C431 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		1C475AC22786F1700075C431 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 		1CE842D02783E69B003259A1 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		1CE842D22783E6A2003259A1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1CE842D42783EB74003259A1 /* UITextField++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField++Extension.swift"; sourceTree = "<group>"; };
-		C502733EC129971EC4D74F0C /* Pods-SproutFARM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SproutFARM.debug.xcconfig"; path = "Target Support Files/Pods-SproutFARM/Pods-SproutFARM.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +88,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CE8429C27828672003259A1 /* SnapKit in Frameworks */,
-				B994B923667C3CC9126486C4 /* Pods_SproutFARM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +141,6 @@
 			children = (
 				1CE8426527827F0E003259A1 /* SproutFARM */,
 				1CE8426427827F0E003259A1 /* Products */,
-				DE6F56EAEEFC12092F1C8951 /* Pods */,
 				22C4B20C4A82C9C790D8EC6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -269,15 +264,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DE6F56EAEEFC12092F1C8951 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C502733EC129971EC4D74F0C /* Pods-SproutFARM.debug.xcconfig */,
-				072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,11 +271,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1CE8427727827F0F003259A1 /* Build configuration list for PBXNativeTarget "SproutFARM" */;
 			buildPhases = (
-				0DE808B3A7B07B4CEA20706A /* [CP] Check Pods Manifest.lock */,
 				1CE8425F27827F0E003259A1 /* Sources */,
 				1CE8426027827F0E003259A1 /* Frameworks */,
 				1CE8426127827F0E003259A1 /* Resources */,
-				CB7FFE9FC38DF312EFFD5A87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -350,48 +334,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0DE808B3A7B07B4CEA20706A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SproutFARM-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CB7FFE9FC38DF312EFFD5A87 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SproutFARM/Pods-SproutFARM-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SproutFARM/Pods-SproutFARM-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SproutFARM/Pods-SproutFARM-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1CE8425F27827F0E003259A1 /* Sources */ = {
@@ -564,7 +506,6 @@
 		};
 		1CE8427827827F0F003259A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C502733EC129971EC4D74F0C /* Pods-SproutFARM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -592,7 +533,6 @@
 		};
 		1CE8427927827F0F003259A1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 072FC6C0C521A503732A7F06 /* Pods-SproutFARM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
