@@ -21,7 +21,7 @@ class PostListViewController: BaseViewController {
   var user: User?
   var postList: [Post] = []
   var start: Int = 0
-  let limit: Int = 4
+  let limit: Int = 10
   
   // MARK: - UI
   let tableView: UITableView = {
@@ -53,30 +53,7 @@ class PostListViewController: BaseViewController {
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
     setTableView()
     setConstaints()
-    
-    // self.viewModel.user = user
-    // self.viewModel.fetchPosts()
-    //
-    // viewModel.post?.bind { post in
-    //   self.tableView.reloadData()
-    // }
-    guard let user = user else { return }
-    print("user OK")
-    print("USER: ", user)
-    APIService.fetchPosts(token: user.jwt, start: start, limit: limit) { post, error in
-      guard error == nil else {
-        print("ERROR -\(error)")
-        UIAlertController.showAlert(self, contentType: .failToFetch, message: "데이터를 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
-        return
-      }
-    
-      guard let post = post else {
-        print("post 없음")
-        return
-      }
-
-      // postList.append(post)
-    }
+    fetchPosts()
   }
 
   // MARK: - Configure
@@ -101,6 +78,20 @@ class PostListViewController: BaseViewController {
     }
   }
   
+  func fetchPosts() {
+    guard let user = user else { return }
+    APIService.fetchPosts(token: user.jwt, start: start, limit: limit) { postList, error in
+      guard error == nil else {
+        UIAlertController.showAlert(self, contentType: .failToFetch, message: "데이터를 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
+        return
+      }
+    
+      guard let postList = postList else { return }
+      self.postList += postList
+      self.tableView.reloadData()
+    }
+  }
+  
   // MARK: - Action
   @objc func onAdd() {
     self.navigationController?.pushViewController(PostViewController(), animated: true)
@@ -110,16 +101,20 @@ class PostListViewController: BaseViewController {
 // MARK: - Extension
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 20
+    return postList.count * 2
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.row % 2 == 0 {
-      let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath)
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath) as? PostListCell else { return UITableViewCell() }
+      let post = postList[indexPath.row / 2]
+      cell.nicknameLabel.text = post.user.username
+      cell.contentLabel.text = post.text
+      cell.dateLabel.text = post.updatedAt
       cell.selectionStyle = .none
       return cell
     } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath)
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
       cell.selectionStyle = .none
       return cell
     }
