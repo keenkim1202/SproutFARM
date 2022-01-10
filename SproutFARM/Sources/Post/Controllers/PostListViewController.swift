@@ -17,7 +17,6 @@ class PostListViewController: BaseViewController {
   }
   
   // MARK: - Properties
-  // private var viewModel = PostViewModel()
   var user: User?
   var postList: [Post] = []
   var start: Int = 0
@@ -110,7 +109,9 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
       let post = postList[indexPath.row / 2]
       cell.nicknameLabel.text = post.user.username
       cell.contentLabel.text = post.text
-      cell.dateLabel.text = post.updatedAt
+      
+      let date = DateFormatter().toString(date: post.updatedAt)
+      cell.dateLabel.text = date
       cell.selectionStyle = .none
       return cell
     } else {

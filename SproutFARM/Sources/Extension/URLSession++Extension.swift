@@ -79,6 +79,7 @@ extension URLSession {
           guard let theData = encodedData else { return }
           
           let decoder = JSONDecoder()
+          decoder.dateDecodingStrategy = .formatted(DateFormatter.customFormat)
           let postInfo = try decoder.decode(PostInfo.self, from: theData)
           print("decode success.")
           postInfo.map{ print($0) }
