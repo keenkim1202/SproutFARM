@@ -104,9 +104,10 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let post = postList[indexPath.row / 2]
+    
     if indexPath.row % 2 == 0 {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath) as? PostListCell else { return UITableViewCell() }
-      let post = postList[indexPath.row / 2]
       cell.nicknameLabel.text = post.user.username
       cell.contentLabel.text = post.text
       
@@ -116,6 +117,9 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
       return cell
     } else {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
+      if post.comments.count != 0 {
+        cell.label.text = "댓글 \(post.comments.count)"
+      }
       cell.selectionStyle = .none
       return cell
     }
