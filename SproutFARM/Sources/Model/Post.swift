@@ -7,19 +7,34 @@
 
 import Foundation
 
-struct FramPost: Codable {
+// struct Post: Codable {
+//   let id: Int
+//   let text: String
+//   let user: User
+//   let createdAt: String
+//   let updatedAt: String
+//   let comments: [Comment]
+//
+//   enum CodingKeys: String, CodingKey {
+//     case id, text, user, comments
+//     case createdAt = "created_at"
+//     case updatedAt = "updated_at"
+//   }
+// }
+
+struct Post: Codable {
   let id: Int
   let text: String
-  let user: User
-  let createdAt: String
-  let updatedAt: String
+  let user: UserInfo
+  let createdAt, updatedAt: String
   let comments: [Comment]
   
   enum CodingKeys: String, CodingKey {
-    case id, text, user, comments
+    case id, text, user
     case createdAt = "created_at"
     case updatedAt = "updated_at"
+    case comments
   }
 }
 
-typealias PostInfo = [FramPost]
+typealias PostInfo = [Post]

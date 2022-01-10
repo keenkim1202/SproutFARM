@@ -45,64 +45,47 @@ extension URLSession {
   
   // post request
   // TODO: Post정보를 가져오는데 실패중..
-  func postRequest(_ request: URLRequest, completion: @escaping(FramPost?, APIError?) -> Void) {
+  func postRequest(_ request: URLRequest, completion: @escaping([Post]?, APIError?) -> Void) {
     URLSession.shared.dataTask(with: request) { data, response, error in
       DispatchQueue.main.async {
         guard error == nil else {
           completion(nil, .failed)
           return
         }
-  
+        
         guard let data = data else {
           completion(nil, .noData)
           return
         }
-  
+        
         guard let response = response as? HTTPURLResponse else {
           completion(nil, .invalidResponse)
           return
         }
-  
+        
         guard response.statusCode == 200 else {
           completion(nil, .failed)
           return
         }
         
         do {
-  
+          var encodedData: Data?
+          
+          if let str = String(data: data, encoding: .utf8) {
+            let encoded = String(str.filter { !" \n\t\r".contains($0) })
+            encodedData = encoded.data(using: .utf8)
+          }
+          
+          guard let theData = encodedData else { return }
+          
           let decoder = JSONDecoder()
-          let postInfo = try decoder.decode(PostInfo.self, from: data)
-          let postData = postInfo[0]
-          print("decodeOK - ", postData)
-          completion(postData, nil)
+          let postInfo = try decoder.decode(PostInfo.self, from: theData)
+          print("decode success.")
+          postInfo.map{ print($0) }
+          completion(postInfo, nil)
         } catch {
+          print(error.localizedDescription)
           completion(nil, .invalideData)
-        }
-      }
-    }.resume()
-  }
-  
-  func postRequest(_ request: URLRequest, completion: @escaping(APIError?) -> Void) {
-    URLSession.shared.dataTask(with: request) { data, response, error in
-      DispatchQueue.main.async {
-        guard error == nil else {
-          completion(.failed)
-          return
-        }
-  
-        guard let data = data else {
-          completion(.noData)
-          return
-        }
-  
-        guard let response = response as? HTTPURLResponse else {
-          completion(.invalidResponse)
-          return
-        }
-  
-        guard response.statusCode == 200 else {
-          completion(.failed)
-          return
         }
       }
     }.resume()

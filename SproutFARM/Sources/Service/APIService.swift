@@ -54,31 +54,31 @@ class APIService {
   }
   
   // MARK: - Posts
-  static func fetchPosts(token: String, start: Int, limit: Int, sort: String = "created_at:desc", completion: @escaping (FramPost?, APIError?) -> Void) {
+  static func fetchPosts(token: String, start: Int, limit: Int, sort: String = "created_at:desc", completion: @escaping ([Post]?, APIError?) -> Void) {
     var components = URLComponents(string: EndPoint.posts)!
     components.queryItems = [
       URLQueryItem(name: "_start", value: "\(start)"),
       URLQueryItem(name: "_limit", value: "\(limit)"),
       URLQueryItem(name: "_sort", value: sort)
     ]
+    print(components.url!)
     
     var request = URLRequest(url: components.url!)
     request.httpMethod = HttpMethod.GET.rawValue
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-    // request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     URLSession.shared.postRequest(request, completion: completion)
   }
   
-  static func writePost(text: String, user: User, completion: @escaping (APIError?) -> Void) {
-    let url = URL(string: EndPoint.posts)!
-    
-    var request = URLRequest(url: url)
-    request.httpMethod = HttpMethod.POST.rawValue
-    request.httpBody = "text=\(text)".data(using: .utf8, allowLossyConversion: false)
-    request.setValue("Bearer \(user.jwt)", forHTTPHeaderField: "Authorization")
-    
-    URLSession.shared.postRequest(request, completion: completion)
-  }
+  // static func writePost(text: String, user: User, completion: @escaping (APIError?) -> Void) {
+  //   let url = URL(string: EndPoint.posts)!
+  //
+  //   var request = URLRequest(url: url)
+  //   request.httpMethod = HttpMethod.POST.rawValue
+  //   request.httpBody = "text=\(text)".data(using: .utf8, allowLossyConversion: false)
+  //   request.setValue("Bearer \(user.jwt)", forHTTPHeaderField: "Authorization")
+  //
+  //   URLSession.shared.postRequest(request, completion: completion)
+  // }
   
   // static func deletePost(id: Int, user: User, completion: @escaping (APIError?) -> Void) {
   //   let url = URL(string: EndPoint.posts)!

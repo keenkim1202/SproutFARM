@@ -19,9 +19,9 @@ class PostListViewController: BaseViewController {
   // MARK: - Properties
   // private var viewModel = PostViewModel()
   var user: User?
-  var postList: [FramPost] = []
+  var postList: [Post] = []
   var start: Int = 0
-  let limit: Int = 10
+  let limit: Int = 4
   
   // MARK: - UI
   let tableView: UITableView = {
@@ -62,6 +62,7 @@ class PostListViewController: BaseViewController {
     // }
     guard let user = user else { return }
     print("user OK")
+    print("USER: ", user)
     APIService.fetchPosts(token: user.jwt, start: start, limit: limit) { post, error in
       guard error == nil else {
         print("ERROR -\(error)")
