@@ -27,6 +27,7 @@ struct EndPoint {
   static let login = baseURL + "/auth/local"
   static let sigup = baseURL + "/auth/local/register"
   static let posts = baseURL + "/posts"
+  static let comments = baseURL + "/comments"
 }
 
 class APIService {
@@ -61,12 +62,22 @@ class APIService {
       URLQueryItem(name: "_limit", value: "\(limit)"),
       URLQueryItem(name: "_sort", value: sort)
     ]
-    print(components.url!)
     
     var request = URLRequest(url: components.url!)
     request.httpMethod = HttpMethod.GET.rawValue
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-    URLSession.shared.postRequest(request, completion: completion)
+    URLSession.shared.request(request, completion: completion)
+  }
+  
+  // MARK: - Comment
+  static func fetchComments(token: String, postID: Int, completion: @escaping ([Comment]?, APIError?) -> Void) {
+    var components = URLComponents(string: EndPoint.comments)!
+    components.queryItems = [URLQueryItem(name: "post", value: "\(postID)")]
+  
+    var request = URLRequest(url: components.url!)
+    request.httpMethod = HttpMethod.GET.rawValue
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    URLSession.shared.request(request, completion: completion)
   }
   
   // static func writePost(text: String, user: User, completion: @escaping (APIError?) -> Void) {

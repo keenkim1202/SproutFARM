@@ -7,27 +7,12 @@
 
 import Foundation
 
-// struct Post: Codable {
-//   let id: Int
-//   let text: String
-//   let user: User
-//   let createdAt: String
-//   let updatedAt: String
-//   let comments: [Comment]
-//
-//   enum CodingKeys: String, CodingKey {
-//     case id, text, user, comments
-//     case createdAt = "created_at"
-//     case updatedAt = "updated_at"
-//   }
-// }
-
 struct Post: Codable {
   let id: Int
   let text: String
   let user: UserInfo
   let createdAt, updatedAt: Date
-  let comments: [Comment]
+  let comments: [PostComment]
   
   enum CodingKeys: String, CodingKey {
     case id, text, user
@@ -46,7 +31,7 @@ extension Post {
     id = try container.decode(Int.self, forKey: .id)
     text = try container.decode(String.self, forKey: .text)
     user = try container.decode(UserInfo.self, forKey: .user)
-    comments = try container.decode([Comment].self, forKey: .comments)
+    comments = try container.decode([PostComment].self, forKey: .comments)
     
     let createdDateString = try container.decode(String.self, forKey: .createdAt)
     let updatedDateString = try container.decode(String.self, forKey: .updatedAt)

@@ -135,7 +135,10 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.navigationController?.pushViewController(DetailPostViewController(), animated: true)
+    let vc = DetailPostViewController()
+    vc.post = postList[indexPath.row / 2]
+    
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {

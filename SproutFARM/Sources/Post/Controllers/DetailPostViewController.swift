@@ -16,6 +16,9 @@ class DetailPostViewController: BaseViewController {
   
   // MARK: - Properties
   var keyHeight: CGFloat?
+  var user: User?
+  var post: Post?
+  var commentList: [Comment] = []
   
   // MARK: - UI
   let tableView: UITableView = {
@@ -30,11 +33,12 @@ class DetailPostViewController: BaseViewController {
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     self.navigationController?.setNavigationBarHidden(false, animated: true)
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onEditPost))
     setTableView()
     setConstaints()
+    fetchComments()
     addKeyboardNotification()
   }
   
@@ -43,7 +47,7 @@ class DetailPostViewController: BaseViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.identifier)
-    tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
+    tableView.register(CommentPostCell.self, forCellReuseIdentifier: CommentPostCell.identifier)
     tableView.register(PostListCommentCell.self, forCellReuseIdentifier: PostListCommentCell.identifier)
     tableView.register(CommentListCell.self, forCellReuseIdentifier: CommentListCell.identifier)
   }
@@ -80,6 +84,26 @@ class DetailPostViewController: BaseViewController {
     )
   }
   
+  // MARK: - Data
+  func fetchComments() {
+    if let user = user, let post = post {
+      APIService.fetchComments(token: user.jwt, postID: post.id) { comments, error in
+        guard error == nil else {
+          UIAlertController.showAlert(self, contentType: .failToFetch, message: "댓글을 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
+          return
+        }
+        
+        guard let comments = comments else { return }
+        self.commentList = comments
+        
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
+      }
+    }
+  }
+  
+  
   // MARK: - Actions
   @objc private func keyboardWillShow(_ notification: Notification) {
     if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -109,28 +133,50 @@ class DetailPostViewController: BaseViewController {
 // MARK: - Extension
 extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10 // test
+    
+    return commentList.count + 3
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.row == 0 { // profile
-      let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath)
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath) as? ProfileCell else { return UITableViewCell() }
+      if let post = post {
+        cell.nicknameLabel.text = post.user.username
+        let date = DateFormatter().toString(date: post.updatedAt)
+        cell.dateLabel.text = date
+      }
       cell.selectionStyle = .none
       return cell
     } else if indexPath.row == 1 { // post content
-      let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath)
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentPostCell.identifier, for: indexPath) as? CommentPostCell else { return UITableViewCell() }
+  
+      if let post = post {
+        cell.postTextLabel.text = post.text
+      }
       cell.selectionStyle = .none
       return cell
     } else if indexPath.row == 2 { // comment
-      let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath)
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
       cell.selectionStyle = .none
       return cell
     } else { // comment content
       guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentListCell.identifier, for: indexPath) as? CommentListCell else { return UITableViewCell() }
+      
+      let comment = commentList[indexPath.row]
+      cell.nicknameLabel.text = comment.user.username
+      cell.contentLabel.text = comment.comment
       cell.selectionStyle = .none
       return cell
     }
   }
+  
+  // func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  //   if indexPath.row == 1 { // post content
+  //     
+  //   } else {
+  //     
+  //   }
+  // }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row > 2 {

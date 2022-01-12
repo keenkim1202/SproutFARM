@@ -45,7 +45,7 @@ extension URLSession {
   
   // post request
   // TODO: Post정보를 가져오는데 실패중..
-  func postRequest(_ request: URLRequest, completion: @escaping([Post]?, APIError?) -> Void) {
+  func request<T: Decodable>(_ request: URLRequest, completion: @escaping([T]?, APIError?) -> Void) {
     URLSession.shared.dataTask(with: request) { data, response, error in
       DispatchQueue.main.async {
         guard error == nil else {
@@ -80,10 +80,10 @@ extension URLSession {
           
           let decoder = JSONDecoder()
           decoder.dateDecodingStrategy = .formatted(DateFormatter.customFormat)
-          let postInfo = try decoder.decode(PostInfo.self, from: theData)
+          let dataInfo = try decoder.decode([T].self, from: theData)
           print("decode success.")
           // postInfo.map{ print($0) }
-          completion(postInfo, nil)
+          completion(dataInfo, nil)
         } catch {
           print(error.localizedDescription)
           completion(nil, .invalideData)
