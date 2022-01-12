@@ -69,7 +69,7 @@ class PostListViewController: BaseViewController {
     view.addSubview(addButton)
     
     tableView.snp.makeConstraints {
-      $0.edges.equalTo(view.snp.edges)
+      $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
     
     addButton.snp.makeConstraints {
