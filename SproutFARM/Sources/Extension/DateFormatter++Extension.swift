@@ -26,4 +26,9 @@ extension DateFormatter {
     formatter.locale = Locale(identifier: "ko-KR")
     return formatter
   }()
+  
+  // func latestDateToString(created: Date, updated: Date) -> String {
+  //   self.dateFormat = "yyyy/MM/dd HH:mm"
+  //   return created < updated ? self.string(from: updated) + "(수정됨)" : self.string(from: created)
+  // }
 }

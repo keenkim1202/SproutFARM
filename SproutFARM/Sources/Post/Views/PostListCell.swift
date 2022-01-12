@@ -30,7 +30,7 @@ class PostListCell: UITableViewCell {
   
   let nicknameLabel: UILabel = {
     let l = UILabel()
-    l.text = "nickname"
+    l.text = "이름 없음"
     l.font = .systemFont(ofSize: 12, weight: .medium)
     l.textColor = .systemGray
     return l
@@ -38,7 +38,7 @@ class PostListCell: UITableViewCell {
   
   let contentLabel: UILabel = {
     let l = UILabel()
-    l.text = "글 내용입니다.글 내용입니다.글 내용입니다.글 내용입니다.글 내용입니다.글 내용입니다.글 내용입니다."
+    l.text = "내용 없음"
     l.font = .systemFont(ofSize: 13, weight: .medium)
     l.numberOfLines = 3
     return l
@@ -46,7 +46,6 @@ class PostListCell: UITableViewCell {
   
   let dateLabel: UILabel = {
     let l = UILabel()
-    l.text = "01/01"
     l.font = .systemFont(ofSize: 12, weight: .regular)
     l.textColor = .systemGray
     return l

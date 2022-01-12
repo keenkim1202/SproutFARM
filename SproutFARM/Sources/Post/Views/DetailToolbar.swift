@@ -43,7 +43,6 @@ class DetailToolbar: UIView {
     b.tintColor = .white
     b.backgroundColor = .mainGreenColor
     b.layer.cornerRadius = 15
-    b.addTarget(self, action: #selector(onDone), for: .touchUpInside)
     return b
   }()
   
@@ -90,8 +89,4 @@ class DetailToolbar: UIView {
     }
   }
   
-  // MARK: - Action
-  @objc func onDone(_ sender: UIButton) {
-    commentTextField.resignFirstResponder()
-  }
 }

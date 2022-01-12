@@ -36,10 +36,15 @@ class DetailPostViewController: BaseViewController {
     
     self.navigationController?.setNavigationBarHidden(false, animated: true)
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onEditPost))
+    toolbar.doneButton.addTarget(self, action: #selector(onWrite), for: .touchUpInside)
     setTableView()
     setConstaints()
-    fetchComments()
     addKeyboardNotification()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    fetchComments()
   }
   
   // MARK: - Configure
@@ -57,7 +62,7 @@ class DetailPostViewController: BaseViewController {
     view.addSubview(toolbar)
     
     tableView.snp.makeConstraints {
-      $0.leading.trailing.top.equalToSuperview()
+      $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
       $0.bottom.equalTo(toolbar.snp.top)
     }
     
@@ -105,6 +110,19 @@ class DetailPostViewController: BaseViewController {
     }
   }
   
+  func writeComment(comment: String) {
+    if let user = user, let post = post {
+      APIService.writePost(token: user.jwt, comment: comment, postID: post.id) { error in
+        guard error == nil else {
+          print("작성 실패 - \(error)")
+          return
+        }
+      }
+      self.toolbar.commentTextField.text = ""
+      self.fetchComments()
+    }
+  }
+  
   
   // MARK: - Actions
   @objc private func keyboardWillShow(_ notification: Notification) {
@@ -123,6 +141,14 @@ class DetailPostViewController: BaseViewController {
       tableView.frame.origin.y += keyboardHeight
       toolbar.frame.origin.y += keyboardHeight
     }
+  }
+  
+  // MARK: - Action
+  @objc func onWrite(_ sender: UIButton) {
+    let text = toolbar.commentTextField.text!
+
+    writeComment(comment: text)
+    toolbar.commentTextField.resignFirstResponder()
   }
   
   @objc func onEditPost() {
@@ -177,6 +203,10 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
       let comment = commentList[indexPath.row]
       cell.nicknameLabel.text = comment.user.username
       cell.contentLabel.text = comment.comment
+      
+      let date = DateFormatter().toString(date: comment.updatedAt)
+      // let date = DateFormatter().latestDateToString(created: comment.createdAt, updated: comment.updatedAt)
+      cell.dateLabel.text = date
       cell.selectionStyle = .none
       return cell
     }

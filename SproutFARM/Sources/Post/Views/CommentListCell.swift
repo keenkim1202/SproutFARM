@@ -22,16 +22,22 @@ class CommentListCell: UITableViewCell {
   // MARK: - UI
   let nicknameLabel: UILabel = {
     let l = UILabel()
-    l.text = "nickname"
     l.font = .systemFont(ofSize: 13, weight: .bold)
+    l.sizeToFit()
     return l
   }()
   
   let contentLabel: UILabel = {
     let l = UILabel()
-    l.text = "댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다. 댓글내용 입니다."
     l.numberOfLines = 0
     l.font = .systemFont(ofSize: 12, weight: .regular)
+    return l
+  }()
+  
+  let dateLabel: UILabel = {
+    let l = UILabel()
+    l.font = .systemFont(ofSize: 10, weight: .regular)
+    l.textColor = .systemGray
     return l
   }()
   
@@ -60,11 +66,11 @@ class CommentListCell: UITableViewCell {
   private func createViews() {
     addSubview(nicknameLabel)
     addSubview(contentLabel)
+    addSubview(dateLabel)
     addSubview(editButton)
   }
   
   private func setConstraints() {
-    
     nicknameLabel.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
       $0.trailing.equalTo(editButton.snp.leading).offset(-Metric.leadingTrailingInset)
@@ -76,6 +82,13 @@ class CommentListCell: UITableViewCell {
       $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
       $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
       $0.top.equalTo(nicknameLabel.snp.bottom).offset(Metric.topBottomInset)
+      $0.bottom.equalTo(dateLabel.snp.top).offset(-Metric.topBottomInset)
+    }
+    
+    dateLabel.snp.makeConstraints {
+      $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
+      $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
+      $0.top.equalTo(contentLabel.snp.bottom).offset(Metric.topBottomInset)
       $0.bottom.equalToSuperview().offset(-Metric.topBottomInset)
     }
     

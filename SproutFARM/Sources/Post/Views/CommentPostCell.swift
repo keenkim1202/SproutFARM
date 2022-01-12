@@ -19,18 +19,12 @@ class CommentPostCell: UITableViewCell {
   let minimumHeight: CGFloat = 100
   
   // MARK: - UI
-  let postView: UIView = {
-    let v = UIView()
-    v.backgroundColor = .yellow
-    return v
-  }()
+  let postView = UIView()
   
   let postTextLabel: UILabel = {
     let l = UILabel()
-    l.text = "post text"
     l.font = .systemFont(ofSize: 13, weight: .medium)
     l.numberOfLines = 0
-    l.backgroundColor = .orange
     l.sizeToFit()
     return l
   }()

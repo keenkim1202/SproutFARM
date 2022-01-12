@@ -27,7 +27,7 @@ typealias PostCommentInfo = [PostComment]
 struct Comment: Codable {
   let comment: String
   let user: UserType
-  let createdAt, updatedAt: String
+  let createdAt, updatedAt: Date
   
   enum CodingKeys: String, CodingKey {
       case comment, user
@@ -36,18 +36,23 @@ struct Comment: Codable {
   }
 }
 
-/*
- "id": 1660,
-     "comment": "123",
-     "user": {
-       "id": 224,
-       "username": "Neph",
-       "email": "neph1234@naver.com",
-       "provider": "local",
-       "confirmed": true,
-       "blocked": null,
-       "role": 1,
-       "created_at": "2022-01-05T09:18:58.072Z",
-       "updated_at": "2022-01-05T09:18:58.093Z"
-     },
- */
+extension Comment {
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+
+    comment = try container.decode(String.self, forKey: .comment)
+    user = try container.decode(UserType.self, forKey: .user)
+    
+    let createdDateString = try container.decode(String.self, forKey: .createdAt)
+    let updatedDateString = try container.decode(String.self, forKey: .updatedAt)
+    let formatter = DateFormatter.customFormat
+    if let update = formatter.date(from: updatedDateString), let create = formatter.date(from: createdDateString)  {
+      updatedAt = update
+      createdAt = create
+    } else {
+      throw DecodingError.dataCorruptedError(forKey: .updatedAt,
+              in: container,
+              debugDescription: "Date string does not match format expected by formatter.")
+    }
+  }
+}

@@ -72,7 +72,10 @@ class APIService {
   // MARK: - Comment
   static func fetchComments(token: String, postID: Int, completion: @escaping ([Comment]?, APIError?) -> Void) {
     var components = URLComponents(string: EndPoint.comments)!
-    components.queryItems = [URLQueryItem(name: "post", value: "\(postID)")]
+    components.queryItems = [
+      URLQueryItem(name: "post", value: "\(postID)"),
+      URLQueryItem(name: "_sort", value: "created_at:desc")
+    ]
   
     var request = URLRequest(url: components.url!)
     request.httpMethod = HttpMethod.GET.rawValue
@@ -80,16 +83,16 @@ class APIService {
     URLSession.shared.request(request, completion: completion)
   }
   
-  // static func writePost(text: String, user: User, completion: @escaping (APIError?) -> Void) {
-  //   let url = URL(string: EndPoint.posts)!
-  //
-  //   var request = URLRequest(url: url)
-  //   request.httpMethod = HttpMethod.POST.rawValue
-  //   request.httpBody = "text=\(text)".data(using: .utf8, allowLossyConversion: false)
-  //   request.setValue("Bearer \(user.jwt)", forHTTPHeaderField: "Authorization")
-  //
-  //   URLSession.shared.postRequest(request, completion: completion)
-  // }
+  static func writePost(token: String, comment: String, postID: Int, completion: @escaping (APIError?) -> Void) {
+    let url = URL(string: EndPoint.comments)!
+  
+    var request = URLRequest(url: url)
+    request.httpMethod = HttpMethod.POST.rawValue
+    request.httpBody = "comment=\(comment)&post=\(postID)".data(using: .utf8, allowLossyConversion: false)
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+  
+    URLSession.shared.request(request, completion: completion)
+  }
   
   // static func deletePost(id: Int, user: User, completion: @escaping (APIError?) -> Void) {
   //   let url = URL(string: EndPoint.posts)!

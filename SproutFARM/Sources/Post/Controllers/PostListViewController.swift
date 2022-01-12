@@ -52,6 +52,10 @@ class PostListViewController: BaseViewController {
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
     setTableView()
     setConstaints()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     fetchPosts()
   }
   
@@ -121,6 +125,7 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
       cell.contentLabel.text = post.text
       
       let date = DateFormatter().toString(date: post.updatedAt)
+      // let date = DateFormatter().latestDateToString(created: post.createdAt, updated: post.updatedAt)
       cell.dateLabel.text = date
       cell.selectionStyle = .none
       return cell

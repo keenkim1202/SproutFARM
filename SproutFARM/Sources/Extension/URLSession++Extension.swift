@@ -72,7 +72,7 @@ extension URLSession {
           var encodedData: Data?
           
           if let str = String(data: data, encoding: .utf8) {
-            let encoded = String(str.filter { !" \n\t\r".contains($0) })
+            let encoded = String(str.filter { !"\n\t\r".contains($0) })
             encodedData = encoded.data(using: .utf8)
           }
           
@@ -87,6 +87,26 @@ extension URLSession {
         } catch {
           print(error.localizedDescription)
           completion(nil, .invalideData)
+        }
+      }
+    }.resume()
+  }
+  
+  // comment request
+  func request(_ request: URLRequest, completion: @escaping (APIError?) -> Void) {
+    URLSession.shared.dataTask(with: request) { _, response, error in
+      DispatchQueue.main.async {
+        guard error == nil else {
+          completion(.failed)
+          return
+        }
+        guard let response = response as? HTTPURLResponse else {
+          completion(.invalidResponse)
+          return
+        }
+        guard response.statusCode == 200 else {
+          completion(.failed)
+          return
         }
       }
     }.resume()
