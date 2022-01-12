@@ -16,13 +16,22 @@ class CommentPostCell: UITableViewCell {
   
   // MARK: - Property
   static let identifier = "CommentPostCell"
+  let minimumHeight: CGFloat = 100
   
   // MARK: - UI
+  let postView: UIView = {
+    let v = UIView()
+    v.backgroundColor = .yellow
+    return v
+  }()
+  
   let postTextLabel: UILabel = {
     let l = UILabel()
     l.text = "post text"
     l.font = .systemFont(ofSize: 13, weight: .medium)
     l.numberOfLines = 0
+    l.backgroundColor = .orange
+    l.sizeToFit()
     return l
   }()
   
@@ -41,15 +50,24 @@ class CommentPostCell: UITableViewCell {
   
   // MARK: - Configure
   private func createViews() {
-    addSubview(postTextLabel)
+    addSubview(postView)
+    postView.addSubview(postTextLabel)
   }
   
   private func setConstraints() {
-    postTextLabel.snp.makeConstraints {
+    postView.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(Metric.cellInset)
       $0.trailing.equalToSuperview().offset(-Metric.cellInset)
       $0.top.equalToSuperview().offset(Metric.cellInset)
       $0.bottom.equalToSuperview().offset(-Metric.cellInset)
+      $0.height.greaterThanOrEqualTo(minimumHeight)
+    }
+    
+    postTextLabel.snp.makeConstraints {
+      $0.leading.equalToSuperview()
+      $0.trailing.equalToSuperview()
+      $0.top.equalToSuperview()
+      $0.height.lessThanOrEqualTo(postView.snp.height)
     }
   }
 }

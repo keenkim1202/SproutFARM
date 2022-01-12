@@ -15,6 +15,7 @@ class DetailPostViewController: BaseViewController {
   }
   
   // MARK: - Properties
+  // let minimumHeight: CGFloat = 80
   var keyHeight: CGFloat?
   var user: User?
   var post: Post?
@@ -33,7 +34,7 @@ class DetailPostViewController: BaseViewController {
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     self.navigationController?.setNavigationBarHidden(false, animated: true)
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onEditPost))
     setTableView()
@@ -55,7 +56,7 @@ class DetailPostViewController: BaseViewController {
   func setConstaints() {
     view.addSubview(tableView)
     view.addSubview(toolbar)
-
+    
     tableView.snp.makeConstraints {
       $0.leading.trailing.top.equalToSuperview()
       $0.bottom.equalTo(toolbar.snp.top)
@@ -149,7 +150,6 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
       return cell
     } else if indexPath.row == 1 { // post content
       guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentPostCell.identifier, for: indexPath) as? CommentPostCell else { return UITableViewCell() }
-  
       if let post = post {
         cell.postTextLabel.text = post.text
       }
@@ -172,9 +172,10 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   
   // func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
   //   if indexPath.row == 1 { // post content
-  //     
+  //     print(UITableView.automaticDimension)
+  //     return (UITableView.automaticDimension < minimumHeight) ? UITableView.automaticDimension : minimumHeight
   //   } else {
-  //     
+  //     return UITableView.automaticDimension
   //   }
   // }
   
