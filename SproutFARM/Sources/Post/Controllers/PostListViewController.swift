@@ -137,6 +137,7 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = DetailPostViewController()
     vc.post = postList[indexPath.row / 2]
+    vc.user = user
     
     self.navigationController?.pushViewController(vc, animated: true)
   }

@@ -100,6 +100,8 @@ class DetailPostViewController: BaseViewController {
           self.tableView.reloadData()
         }
       }
+    } else {
+      print("no user or post")
     }
   }
   
@@ -132,33 +134,44 @@ class DetailPostViewController: BaseViewController {
 
 // MARK: - Extension
 extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
+  }
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
-    return commentList.count + 3
+    if section == 0 {
+      return 3
+    } else {
+      return commentList.count
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row == 0 { // profile
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath) as? ProfileCell else { return UITableViewCell() }
-      if let post = post {
-        cell.nicknameLabel.text = post.user.username
-        let date = DateFormatter().toString(date: post.updatedAt)
-        cell.dateLabel.text = date
+    if indexPath.section == 0 {
+      if indexPath.row == 0 { // profile
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath) as? ProfileCell else { return UITableViewCell() }
+        if let post = post {
+          cell.nicknameLabel.text = post.user.username
+          let date = DateFormatter().toString(date: post.updatedAt)
+          cell.dateLabel.text = date
+        }
+        cell.selectionStyle = .none
+        return cell
+      } else if indexPath.row == 1 { // post content
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentPostCell.identifier, for: indexPath) as? CommentPostCell else { return UITableViewCell() }
+        if let post = post {
+          cell.postTextLabel.text = post.text
+        }
+        cell.selectionStyle = .none
+        return cell
+      } else if indexPath.row == 2 { // comment
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
+        cell.selectionStyle = .none
+        return cell
+      } else {
+        return UITableViewCell()
       }
-      cell.selectionStyle = .none
-      return cell
-    } else if indexPath.row == 1 { // post content
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentPostCell.identifier, for: indexPath) as? CommentPostCell else { return UITableViewCell() }
-      if let post = post {
-        cell.postTextLabel.text = post.text
-      }
-      cell.selectionStyle = .none
-      return cell
-    } else if indexPath.row == 2 { // comment
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
-      cell.selectionStyle = .none
-      return cell
-    } else { // comment content
+    } else {
+      // comment content
       guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentListCell.identifier, for: indexPath) as? CommentListCell else { return UITableViewCell() }
       
       let comment = commentList[indexPath.row]
