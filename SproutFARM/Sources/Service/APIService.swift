@@ -83,7 +83,7 @@ class APIService {
     URLSession.shared.request(request, completion: completion)
   }
   
-  static func writePost(token: String, comment: String, postID: Int, completion: @escaping (APIError?) -> Void) {
+  static func writeComment(token: String, comment: String, postID: Int, completion: @escaping (APIError?) -> Void) {
     let url = URL(string: EndPoint.comments)!
   
     var request = URLRequest(url: url)
@@ -94,7 +94,7 @@ class APIService {
     URLSession.shared.request(request, completion: completion)
   }
   
-  static func updatePost(token: String, comment: String, postID: Int, commentID: Int, completion: @escaping (APIError?) -> Void) {
+  static func updateComment(token: String, comment: String, postID: Int, commentID: Int, completion: @escaping (APIError?) -> Void) {
     let url = URL(string: EndPoint.comments + "/\(commentID)")!
   
     var request = URLRequest(url: url)
@@ -105,16 +105,15 @@ class APIService {
     URLSession.shared.request(request, completion: completion)
   }
   
-  // static func deletePost(id: Int, user: User, completion: @escaping (APIError?) -> Void) {
-  //   let url = URL(string: EndPoint.posts)!
-  //
-  //   var request = URLRequest(url: url)
-  //   request.httpMethod = HttpMethod.DELETE.rawValue
-  //   request.setValue("Bearer \(user.jwt)", forHTTPHeaderField: "Authorization")
-  //   request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-  //
-  //   URLSession.shared.postRequest(request, completion: completion)
-  // }
+  static func deleteComment(token: String, postID: Int, completion: @escaping (APIError?) -> Void) {
+    let url = URL(string: EndPoint.comments + "/\(postID)")!
+  
+    var request = URLRequest(url: url)
+    request.httpMethod = HttpMethod.DELETE.rawValue
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+  
+    URLSession.shared.request(request, completion: completion)
+  }
   
 }
 

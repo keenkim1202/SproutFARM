@@ -112,7 +112,7 @@ class DetailPostViewController: BaseViewController {
   
   func writeComment(comment: String) {
     if let user = user, let post = post {
-      APIService.writePost(token: user.jwt, comment: comment, postID: post.id) { error in
+      APIService.writeComment(token: user.jwt, comment: comment, postID: post.id) { error in
         guard error == nil else {
           UIAlertController.showAlert(self, contentType: .failToWrite, message: "댓글 작성에 실패하였습니다.\n다시 시도해 주세요.")
           return
