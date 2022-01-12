@@ -54,11 +54,12 @@ class PostListViewController: BaseViewController {
     setConstaints()
     fetchPosts()
   }
-
+  
   // MARK: - Configure
   func setTableView() {
     tableView.delegate = self
     tableView.dataSource = self
+    tableView.prefetchDataSource = self
     tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
     tableView.register(PostListCommentCell.self, forCellReuseIdentifier: PostListCommentCell.identifier)
   }
@@ -77,17 +78,25 @@ class PostListViewController: BaseViewController {
     }
   }
   
-  func fetchPosts() {
+  func fetchPosts(start: Int = 0, limit: Int = 10) {
     guard let user = user else { return }
-    APIService.fetchPosts(token: user.jwt, start: start, limit: limit) { postList, error in
-      guard error == nil else {
-        UIAlertController.showAlert(self, contentType: .failToFetch, message: "데이터를 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
-        return
+
+    DispatchQueue.global().async {
+      APIService.fetchPosts(token: user.jwt, start: start, limit: limit) { posts, error in
+        guard error == nil else {
+          UIAlertController.showAlert(self, contentType: .failToFetch, message: "데이터를 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
+          return
+        }
+        
+        guard let posts = posts, !posts.isEmpty else { return }
+        self.postList += posts
+        self.start += limit
+        
+        DispatchQueue.main.async {
+          self.tableView.reloadData()
+        }
+        
       }
-    
-      guard let postList = postList else { return }
-      self.postList += postList
-      self.tableView.reloadData()
     }
   }
   
@@ -130,10 +139,25 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-      if scrollView.contentOffset.y <= 0 {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-      } else {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-      }
+    if scrollView.contentOffset.y <= 0 {
+      self.navigationController?.setNavigationBarHidden(false, animated: true)
+    } else {
+      self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
   }
+}
+
+extension PostListViewController: UITableViewDataSourcePrefetching {
+  func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    for indexPath in indexPaths {
+      if (postList.count - 1 == indexPath.row / 2) {
+        fetchPosts(start: limit + start)
+      }
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+   print("최소 - \(indexPaths)")
+  }
+
 }

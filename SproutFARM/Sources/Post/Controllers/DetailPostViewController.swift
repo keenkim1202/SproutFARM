@@ -14,6 +14,7 @@ class DetailPostViewController: BaseViewController {
     static let toolbarHeight: CGFloat = 50
   }
   
+  // MARK: - Properties
   var keyHeight: CGFloat?
   
   // MARK: - UI

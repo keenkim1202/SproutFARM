@@ -82,7 +82,7 @@ extension URLSession {
           decoder.dateDecodingStrategy = .formatted(DateFormatter.customFormat)
           let postInfo = try decoder.decode(PostInfo.self, from: theData)
           print("decode success.")
-          postInfo.map{ print($0) }
+          // postInfo.map{ print($0) }
           completion(postInfo, nil)
         } catch {
           print(error.localizedDescription)
