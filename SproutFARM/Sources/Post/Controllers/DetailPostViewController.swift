@@ -114,10 +114,11 @@ class DetailPostViewController: BaseViewController {
     if let user = user, let post = post {
       APIService.writePost(token: user.jwt, comment: comment, postID: post.id) { error in
         guard error == nil else {
-          print("작성 실패 - \(error)")
+          UIAlertController.showAlert(self, contentType: .failToWrite, message: "댓글 작성에 실패하였습니다.\n다시 시도해 주세요.")
           return
         }
       }
+      
       self.toolbar.commentTextField.text = ""
       self.fetchComments()
     }
@@ -154,7 +155,7 @@ class DetailPostViewController: BaseViewController {
   @objc func onEditPost() {
     let vc = PostViewController()
     vc.viewType = .update
-    self.navigationController?.pushViewController(vc, animated: true)
+    showAlertMenu(message: "포스트 관리", vc: vc)
   }
 }
 
@@ -205,7 +206,6 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
       cell.contentLabel.text = comment.comment
       
       let date = DateFormatter().toString(date: comment.updatedAt)
-      // let date = DateFormatter().latestDateToString(created: comment.createdAt, updated: comment.updatedAt)
       cell.dateLabel.text = date
       cell.selectionStyle = .none
       return cell
@@ -213,8 +213,8 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.row > 2 {
-      showAlertMenu(message: "댓글 관리")
+    if indexPath.section == 1 {
+      showAlertMenu(message: "댓글 관리", vc: EditCommentViewController())
     }
   }
 }

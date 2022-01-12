@@ -22,12 +22,12 @@ class BaseViewController: UIViewController {
     view.backgroundColor = .systemBackground
   }
   
-  func showAlertMenu(message: String) {
+  func showAlertMenu(message: String, vc: UIViewController) {
     let alertMenu = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
     
     let updateAction = UIAlertAction(title: "수정", style: .default, handler: {
       (alert: UIAlertAction!) -> Void in
-      let vc = EditCommentViewController()
+      // let vc = EditCommentViewController()
       // TODO: Comment 정보 넘겨주기
       self.navigationController?.pushViewController(vc, animated: true)
     })

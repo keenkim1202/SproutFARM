@@ -13,6 +13,7 @@ extension UIAlertController {
     case successToSignUp = "회원가입 성공"
     case failToSignUp = "회원가입 실패"
     case failToFetch = "데이터 로드 실패"
+    case failToWrite = "작성 실패"
   }
   
   static func showAlert(_ presentedHost: UIViewController,

@@ -94,6 +94,17 @@ class APIService {
     URLSession.shared.request(request, completion: completion)
   }
   
+  static func updatePost(token: String, comment: String, postID: Int, commentID: Int, completion: @escaping (APIError?) -> Void) {
+    let url = URL(string: EndPoint.comments + "/\(commentID)")!
+  
+    var request = URLRequest(url: url)
+    request.httpMethod = HttpMethod.PUT.rawValue
+    request.httpBody = "comment=\(comment)&post=\(postID)".data(using: .utf8, allowLossyConversion: false)
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+  
+    URLSession.shared.request(request, completion: completion)
+  }
+  
   // static func deletePost(id: Int, user: User, completion: @escaping (APIError?) -> Void) {
   //   let url = URL(string: EndPoint.posts)!
   //
