@@ -58,11 +58,9 @@ class EditCommentViewController: BaseViewController {
         return
       }
     }
-    UIAlertController.sucessAlert(self, contentType: .success, message: "댓글 수정 완료!")
     
-    // self.navigationController?.popViewController(animated: true)
+    UIAlertController.sucessAlert(self, contentType: .success, message: "댓글 수정 완료!")
   }
-  
 }
 
 extension EditCommentViewController: UITextViewDelegate {

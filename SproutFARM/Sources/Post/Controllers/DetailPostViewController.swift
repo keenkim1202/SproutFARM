@@ -232,10 +232,14 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 1 {
-      let vc = EditCommentViewController()
-      vc.user = user
-      vc.comment = commentList[indexPath.row]
-      showAlertMenu(message: "댓글 관리", vc: vc)
+      if let user = user, user.user.id == commentList[indexPath.row].user.id { // 본인이 댓글 작성자일 경우
+          let vc = EditCommentViewController()
+          vc.user = user
+          vc.comment = commentList[indexPath.row]
+          showAlertMenu(message: "댓글 관리", vc: vc)
+      } else {
+        UIAlertController.showAlert(self, contentType: .etc, message: "본인이 작성한 댓글만 수정할 수 있습니다.")
+      }
     }
   }
 }

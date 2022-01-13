@@ -15,6 +15,7 @@ extension UIAlertController {
     case failToFetch = "데이터 로드 실패"
     case failToWrite = "작성 실패"
     case failToUpdate = "수정 실패"
+    case etc = "⚠️"
   }
   
   static func showAlert(_ presentedHost: UIViewController,
