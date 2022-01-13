@@ -139,7 +139,7 @@ class DetailPostViewController: BaseViewController {
       }
     }
     
-    UIAlertController.showAlert(self, contentType: .success, message: "댓글 삭제 완료!") {
+    UIAlertController.showAlert(self, contentType: .success, message: "댓글 삭제 완료!") { _ in 
       self.fetchComments()
     }
   }
