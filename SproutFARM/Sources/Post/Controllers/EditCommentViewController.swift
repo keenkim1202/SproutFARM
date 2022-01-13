@@ -21,7 +21,6 @@ class EditCommentViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    editCommentView.textView.delegate = self
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onDone))
     setConstraints()
   }
@@ -60,8 +59,4 @@ class EditCommentViewController: BaseViewController {
       UIAlertController.showAlert(self, contentType: .failToUpdate, message: "댓글 변경에 실패하였습니다.\n다시 시도해 주세요.")
     }
   }
-}
-
-extension EditCommentViewController: UITextViewDelegate {
-  
 }
