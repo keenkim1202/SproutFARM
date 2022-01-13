@@ -10,7 +10,7 @@ import UIKit
 class EditCommentViewController: BaseViewController {
   
   // MARK: - Properties
-  
+  var comment: Comment?
   
   // MARK: - UI
   let editCommentView = EditCommentView()
@@ -18,6 +18,12 @@ class EditCommentViewController: BaseViewController {
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    if let comment = comment {
+      editCommentView.textView.text = comment.comment
+    } else {
+      print("comment 없음")
+    }
     setConstraints()
   }
   
@@ -25,7 +31,7 @@ class EditCommentViewController: BaseViewController {
   private func setConstraints() {
     view.addSubview(editCommentView)
     editCommentView.snp.makeConstraints {
-      $0.edges.equalToSuperview()
+      $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
   

@@ -18,6 +18,8 @@ class EditCommentView: UIView {
   // MARK: - UI
   let textView: UITextView = {
     let t = UITextView()
+    t.layer.borderColor = UIColor.lightGray.cgColor
+    t.layer.borderWidth = 1
     return t
   }()
   

@@ -22,6 +22,7 @@ class DetailToolbar: UIView {
   let toolbar: UIToolbar = {
     let t = UIToolbar()
     t.barTintColor = .systemBackground
+    t.sizeToFit()
     return t
   }()
   

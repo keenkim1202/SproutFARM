@@ -177,7 +177,12 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
       if indexPath.row == 0 { // profile
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath) as? ProfileCell else { return UITableViewCell() }
         if let post = post {
-          cell.nicknameLabel.text = post.user.username
+          if post.user.username.isEmpty {
+            cell.nicknameLabel.text = "(이름 없음)"
+          } else {
+            cell.nicknameLabel.text = post.user.username
+          }
+
           let date = DateFormatter().toString(date: post.updatedAt)
           cell.dateLabel.text = date
         }
@@ -202,7 +207,11 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentListCell.identifier, for: indexPath) as? CommentListCell else { return UITableViewCell() }
       
       let comment = commentList[indexPath.row]
-      cell.nicknameLabel.text = comment.user.username
+      if comment.user.username.isEmpty {
+        cell.nicknameLabel.text = "(이름 없음)"
+      } else {
+        cell.nicknameLabel.text = comment.user.username
+      }
       cell.contentLabel.text = comment.comment
       
       let date = DateFormatter().toString(date: comment.updatedAt)
@@ -214,7 +223,9 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 1 {
-      showAlertMenu(message: "댓글 관리", vc: EditCommentViewController())
+      let vc = EditCommentViewController()
+      vc.comment = commentList[indexPath.row]
+      showAlertMenu(message: "댓글 관리", vc: vc)
     }
   }
 }

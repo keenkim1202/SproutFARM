@@ -99,7 +99,6 @@ class PostListViewController: BaseViewController {
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
-        
       }
     }
   }
@@ -121,11 +120,14 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
     
     if indexPath.row % 2 == 0 {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath) as? PostListCell else { return UITableViewCell() }
-      cell.nicknameLabel.text = post.user.username
+      if post.user.username.isEmpty {
+        cell.nicknameLabel.text = "(이름 없음)"
+      } else {
+        cell.nicknameLabel.text = post.user.username
+      }
       cell.contentLabel.text = post.text
       
       let date = DateFormatter().toString(date: post.updatedAt)
-      // let date = DateFormatter().latestDateToString(created: post.createdAt, updated: post.updatedAt)
       cell.dateLabel.text = date
       cell.selectionStyle = .none
       return cell

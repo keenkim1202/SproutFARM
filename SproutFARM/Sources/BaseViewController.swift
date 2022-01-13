@@ -27,7 +27,6 @@ class BaseViewController: UIViewController {
     
     let updateAction = UIAlertAction(title: "수정", style: .default, handler: {
       (alert: UIAlertAction!) -> Void in
-      // let vc = EditCommentViewController()
       // TODO: Comment 정보 넘겨주기
       self.navigationController?.pushViewController(vc, animated: true)
     })
