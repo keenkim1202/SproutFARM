@@ -38,6 +38,12 @@ class PostViewController: BaseViewController {
       self.title = "새싹농장 글쓰기"
     } else {
       self.title = "글 수정하기"
+      
+      if let post = post {
+        textView.text = post.text
+      } else {
+        UIAlertController.showAlert(self, contentType: .etc, message: "포스트를 불러오는데 실패하였습니다.")
+      }
     }
     
     self.navigationController?.setNavigationBarHidden(false, animated: true)

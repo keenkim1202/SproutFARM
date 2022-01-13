@@ -18,12 +18,7 @@ class DetailPostViewController: BaseViewController {
   var keyHeight: CGFloat?
   var user: User?
   var post: Post?
-  var commentList: [Comment] = [] {
-    didSet {
-      fetchComments()
-      
-    }
-  }
+  var commentList: [Comment] = []
   
   // MARK: - UI
   let tableView: UITableView = {
@@ -51,7 +46,6 @@ class DetailPostViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    print(#function)
     fetchComments()
   }
   
@@ -180,6 +174,8 @@ class DetailPostViewController: BaseViewController {
   @objc func onEditPost() {
     let vc = PostViewController()
     vc.viewType = .update
+    vc.user = user
+    vc.post = post
     showAlertMenu(message: "포스트 관리", vc: vc) {
       
       if let user = self.user, let post = self.post {
