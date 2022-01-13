@@ -126,15 +126,19 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    print(postList.count)
     let post = postList[indexPath.row]
-    
     guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath) as? PostListCell else { return UITableViewCell() }
+    
     if post.user.username.isEmpty {
       cell.postView.nicknameLabel.text = "(이름 없음)"
     } else {
       cell.postView.nicknameLabel.text = post.user.username
     }
+    
+    if !post.comments.isEmpty {
+      cell.commentView.label.text = "댓글 \(post.comments.count)"
+    }
+    
     cell.postView.contentLabel.text = post.text
     
     let date = DateFormatter().toString(date: post.updatedAt)

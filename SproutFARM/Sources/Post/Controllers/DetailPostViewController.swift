@@ -242,6 +242,10 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
       } else if indexPath.row == 2 { // comment
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
         
+        if !commentList.isEmpty {
+          cell.label.text = "댓글 \(commentList.count)"
+        }
+        
         cell.selectionStyle = .none
         return cell
       } else {
