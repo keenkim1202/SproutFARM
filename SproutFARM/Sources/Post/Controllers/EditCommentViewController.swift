@@ -19,12 +19,18 @@ class EditCommentViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    setConstraints()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
     if let comment = comment {
       editCommentView.textView.text = comment.comment
     } else {
       print("comment 없음")
     }
-    setConstraints()
+
   }
   
   // MARK: - Configure

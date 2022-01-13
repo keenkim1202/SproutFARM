@@ -31,7 +31,6 @@ class IntroView: UIView {
     let i = UIImageView()
     i.image = .sacLogo
     i.contentMode = .scaleAspectFit
-    i.backgroundColor = .white
     return i
   }()
   

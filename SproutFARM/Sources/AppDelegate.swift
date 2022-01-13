@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
     appearance.backgroundColor = .white
-    UINavigationBar.appearance().tintColor = .black
-    UINavigationBar.appearance().backgroundColor = .white
+    UINavigationBar.appearance().tintColor = .oppositeColor
+    UINavigationBar.appearance().backgroundColor = .systemBackground
     return true
   }
 

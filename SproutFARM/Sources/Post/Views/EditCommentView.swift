@@ -11,7 +11,7 @@ class EditCommentView: UIView {
   // MARK: - Metric
   struct Metric {
     static let leadingTrailingInset: CGFloat = 15
-    static let topBottomInset: CGFloat = 15
+    static let topBottomInset: CGFloat = 20
     static let textViewHeight: CGFloat = 100
   }
   
@@ -20,6 +20,7 @@ class EditCommentView: UIView {
     let t = UITextView()
     t.layer.borderColor = UIColor.lightGray.cgColor
     t.layer.borderWidth = 1
+    t.layer.cornerRadius = 5
     return t
   }()
   

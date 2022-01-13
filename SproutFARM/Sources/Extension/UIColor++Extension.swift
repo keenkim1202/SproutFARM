@@ -9,4 +9,5 @@ import UIKit
 
 extension UIColor {
   static let mainGreenColor = UIColor(named: "mainGreenColor")!
+  static let oppositeColor = UIColor(named: "OppositeColor")!
 }
