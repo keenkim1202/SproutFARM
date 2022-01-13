@@ -18,6 +18,7 @@ class PostViewController: BaseViewController {
   // MARK: - Properties
   var viewType: ViewType = .add
   var user: User?
+  var post: Post?
   
   // MARK: - UI
   let textView: UITextView = {
@@ -58,14 +59,27 @@ class PostViewController: BaseViewController {
   // MARK: - HTTP Networking
   func writePost() {
     if let user = user {
-      APIService.writePost(token: user.jwt, text: textView.text) { error in
-        guard error == nil else {
-          UIAlertController.showAlert(self, contentType: .failToWrite, message: "포스트 작성에 실패하였습니다.\n다시 시도 해주세요.")
-          return
+      if viewType == .add {
+        APIService.writePost(token: user.jwt, text: textView.text) { error in
+          guard error == nil else {
+            UIAlertController.showAlert(self, contentType: .failToWrite, message: "포스트 작성에 실패하였습니다.\n다시 시도 해주세요.")
+            return
+          }
+        }
+        
+        UIAlertController.sucessAlert(self, contentType: .success, message: "포스트 작성 완료!")
+      } else {
+        if let post = post {
+          APIService.updatePost(token: user.jwt, text: textView.text, postID: post.id) { error in
+            guard error == nil else {
+              UIAlertController.showAlert(self, contentType: .failToUpdate, message: "포스트 수정에 실패하였습니다.\n다시 시도 해주세요.")
+              return
+            }
+          }
+          
+          UIAlertController.sucessAlert(self, contentType: .success, message: "포스트 수정 완료!")
         }
       }
-      
-      UIAlertController.sucessAlert(self, contentType: .success, message: "포스트 작성 완료!")
     }
   }
   
