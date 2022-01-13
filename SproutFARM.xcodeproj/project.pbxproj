@@ -22,6 +22,8 @@
 		1CC9A7152786E1BA00914655 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7142786E1BA00914655 /* Post.swift */; };
 		1CC9A7172786E26300914655 /* DateFormatter++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7162786E26300914655 /* DateFormatter++Extension.swift */; };
 		1CC9A7192786E46F00914655 /* EditCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7182786E46F00914655 /* EditCommentView.swift */; };
+		1CD60EBB2790414C005635DC /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD60EBA2790414C005635DC /* PostView.swift */; };
+		1CD60EBD279041A1005635DC /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD60EBC279041A1005635DC /* CommentView.swift */; };
 		1CE8426727827F0E003259A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426627827F0E003259A1 /* AppDelegate.swift */; };
 		1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426827827F0E003259A1 /* SceneDelegate.swift */; };
 		1CE8426B27827F0E003259A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8426A27827F0E003259A1 /* LoginViewController.swift */; };
@@ -61,6 +63,8 @@
 		1CC9A7142786E1BA00914655 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		1CC9A7162786E26300914655 /* DateFormatter++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extension.swift"; sourceTree = "<group>"; };
 		1CC9A7182786E46F00914655 /* EditCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentView.swift; sourceTree = "<group>"; };
+		1CD60EBA2790414C005635DC /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		1CD60EBC279041A1005635DC /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		1CE8426327827F0E003259A1 /* SproutFARM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SproutFARM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CE8426627827F0E003259A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CE8426827827F0E003259A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				1CC9A7042785C9D200914655 /* CommentListCell.swift */,
 				1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */,
 				1CC9A7182786E46F00914655 /* EditCommentView.swift */,
+				1CD60EBA2790414C005635DC /* PostView.swift */,
+				1CD60EBC279041A1005635DC /* CommentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,6 +359,7 @@
 				1CE842932782829B003259A1 /* BaseViewController.swift in Sources */,
 				1CE84297278283EC003259A1 /* UIImage++Extension.swift in Sources */,
 				1C258D60278EC84800AD237F /* CommentPostCell.swift in Sources */,
+				1CD60EBB2790414C005635DC /* PostView.swift in Sources */,
 				1CC9A7102786D14A00914655 /* URLSession++Extension.swift in Sources */,
 				1CE8428C278281C7003259A1 /* EditCommentViewController.swift in Sources */,
 				1CE842D12783E69B003259A1 /* RegisterView.swift in Sources */,
@@ -360,6 +367,7 @@
 				1C58C7D627842CE200CC3F50 /* PostListCommentCell.swift in Sources */,
 				1CE842CF2783E4FB003259A1 /* IntroView.swift in Sources */,
 				1CE8426927827F0E003259A1 /* SceneDelegate.swift in Sources */,
+				1CD60EBD279041A1005635DC /* CommentView.swift in Sources */,
 				1C475AC12786ED550075C431 /* Observable.swift in Sources */,
 				1CC9A7172786E26300914655 /* DateFormatter++Extension.swift in Sources */,
 				1CE842912782827D003259A1 /* IntroViewController.swift in Sources */,

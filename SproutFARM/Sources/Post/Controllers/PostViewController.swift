@@ -44,9 +44,7 @@ class PostViewController: BaseViewController {
     setConstraints()
   }
   
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.view.endEditing(true)
-  }
+
   
   // MARK: - Configure
   private func setConstraints() {
@@ -57,11 +55,12 @@ class PostViewController: BaseViewController {
     }
   }
   
+  // MARK: - HTTP Networking
   func writePost() {
     if let user = user {
       APIService.writePost(token: user.jwt, text: textView.text) { error in
         guard error == nil else {
-          UIAlertController.showAlert(self, contentType: .failToWrite, message: "포스트 작성에 실패하였습니다.\n다시시도 해주세요.")
+          UIAlertController.showAlert(self, contentType: .failToWrite, message: "포스트 작성에 실패하였습니다.\n다시 시도 해주세요.")
           return
         }
       }
@@ -73,8 +72,6 @@ class PostViewController: BaseViewController {
   // MARK: - Action
   @objc func onDone(_ sender: UIBarButtonItem) {
     // TODO: 포스트 작성하기
-    
-    
     self.textView.endEditing(true)
     self.navigationController?.popViewController(animated: true)
   }

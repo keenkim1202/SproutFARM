@@ -32,9 +32,8 @@ class EditCommentViewController: BaseViewController {
     if let comment = comment {
       editCommentView.textView.text = comment.comment
     } else {
-      print("comment 없음")
+      UIAlertController.showAlert(self, contentType: .etc, message: "해당 댓글을 불러올 수 없습니다.\n다시 시도해 주세요.")
     }
-
   }
   
   // MARK: - Configure
@@ -45,21 +44,21 @@ class EditCommentViewController: BaseViewController {
     }
   }
   
+  // MARK: - Action
   @objc func onDone() {
-    guard
-      let user = user,
-      let comment = comment
-    else { return }
-    print(comment)
-    
-    APIService.updateComment(token: user.jwt, comment: editCommentView.textView.text, postID: comment.post.id, commentID: comment.id) { error in
-      guard error == nil else {
-        UIAlertController.showAlert(self, contentType: .failToUpdate, message: "댓글 변경에 실패하였습니다.\n다시시도 해주세요.", completion: nil)
-        return
+    if let user = user, let comment = comment {
+      APIService.updateComment(token: user.jwt, comment: editCommentView.textView.text, postID: comment.post.id, commentID: comment.id) { error in
+        
+        guard error == nil else {
+          UIAlertController.showAlert(self, contentType: .etc, message: "해당 댓글이 존재하지 않습니다.")
+          return
+        }
       }
+      
+      UIAlertController.sucessAlert(self, contentType: .success, message: "댓글 수정 완료!")
+    } else {
+      UIAlertController.showAlert(self, contentType: .failToUpdate, message: "댓글 변경에 실패하였습니다.\n다시 시도해 주세요.")
     }
-    
-    UIAlertController.sucessAlert(self, contentType: .success, message: "댓글 수정 완료!")
   }
 }
 

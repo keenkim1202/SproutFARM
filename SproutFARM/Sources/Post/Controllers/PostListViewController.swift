@@ -7,8 +7,6 @@
 
 import UIKit
 
-// TODO: Pagination 구현하기
-
 class PostListViewController: BaseViewController {
   
   // MARK: - Metric
@@ -42,15 +40,18 @@ class PostListViewController: BaseViewController {
     return b
   }()
   
+  let titleLabel: UILabel = {
+    let l = UILabel()
+    l.text = "새싹 농장"
+    l.font = .systemFont(ofSize: 15, weight: .bold)
+    return l
+  }()
+  
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let label = UILabel()
-    label.text = "새싹 농장"
-    label.font = .systemFont(ofSize: 15, weight: .bold)
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
-    
+    setNavigationBar()
     setTableView()
     setConstaints()
   }
@@ -61,6 +62,10 @@ class PostListViewController: BaseViewController {
   }
   
   // MARK: - Configure
+  func setNavigationBar() {
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+  }
+  
   func setTableView() {
     tableView.delegate = self
     tableView.dataSource = self
@@ -83,7 +88,9 @@ class PostListViewController: BaseViewController {
     }
   }
   
+  // MARK: - HTTP Networking
   func fetchPosts(start: Int = 0, limit: Int = 10) {
+    self.postList = []
     guard let user = user else { return }
 
     DispatchQueue.global().async {

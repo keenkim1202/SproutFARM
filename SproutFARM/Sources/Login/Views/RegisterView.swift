@@ -36,6 +36,7 @@ class RegisterView: UIView {
     t.placeholder = "비밀번호"
     t.borderStyle = .roundedRect
     t.font = .systemFont(ofSize: 14, weight: .bold)
+    t.isSecureTextEntry = true
     t.layer.cornerRadius = 5
     t.addLeftPadding()
     return t
@@ -45,6 +46,7 @@ class RegisterView: UIView {
     let t = UITextField()
     t.placeholder = "비밀번호 확인"
     t.borderStyle = .roundedRect
+    t.isSecureTextEntry = true
     t.font = .systemFont(ofSize: 14, weight: .bold)
     t.layer.cornerRadius = 5
     t.addLeftPadding()

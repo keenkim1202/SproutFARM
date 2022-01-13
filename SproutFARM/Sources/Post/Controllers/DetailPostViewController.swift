@@ -18,7 +18,12 @@ class DetailPostViewController: BaseViewController {
   var keyHeight: CGFloat?
   var user: User?
   var post: Post?
-  var commentList: [Comment] = []
+  var commentList: [Comment] = [] {
+    didSet {
+      fetchComments()
+      
+    }
+  }
   
   // MARK: - UI
   let tableView: UITableView = {
@@ -28,15 +33,17 @@ class DetailPostViewController: BaseViewController {
     return t
   }()
   
-  let toolbar = DetailToolbar()
+  let toolbar: DetailToolbar = {
+    let t = DetailToolbar()
+    t.doneButton.addTarget(self, action: #selector(onWrite), for: .touchUpInside)
+    return t
+  }()
   
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.navigationController?.setNavigationBarHidden(false, animated: true)
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onEditPost))
-    toolbar.doneButton.addTarget(self, action: #selector(onWrite), for: .touchUpInside)
+    setNagivationBar()
     setTableView()
     setConstaints()
     addKeyboardNotification()
@@ -49,6 +56,11 @@ class DetailPostViewController: BaseViewController {
   }
   
   // MARK: - Configure
+  func setNagivationBar() {
+    self.navigationController?.setNavigationBarHidden(false, animated: true)
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onEditPost))
+  }
+  
   func setTableView() {
     tableView.delegate = self
     tableView.dataSource = self
@@ -90,19 +102,16 @@ class DetailPostViewController: BaseViewController {
     )
   }
   
-  // MARK: - Data
+  // MARK: - HTTP Networking
   func fetchComments() {
     if let user = user, let post = post {
       APIService.fetchComments(token: user.jwt, postID: post.id) { comments, error in
         guard error == nil else {
-          UIAlertController.showAlert(self, contentType: .failToFetch, message: "댓글을 불러오는데 실패하였습니다.\n다시 시도해 주세요.", completion: nil)
+          UIAlertController.showAlert(self, contentType: .failToFetch, message: "댓글을 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
           return
         }
         
-        guard let comments = comments else {
-          return
-        }
-        print("com: ", comments)
+        guard let comments = comments else { return }
         self.commentList = comments
         
         DispatchQueue.main.async {
@@ -110,7 +119,7 @@ class DetailPostViewController: BaseViewController {
         }
       }
     } else {
-      print("no user or post")
+      UIAlertController.showAlert(self, contentType: .etc, message: "해당 포스트가 존재하지 않습니다..")
     }
   }
   
@@ -131,7 +140,7 @@ class DetailPostViewController: BaseViewController {
   func deleteComment(token: String, commentID: Int) {
     APIService.deleteComment(token: token, commentID: commentID) { error in
       guard error == nil else {
-        UIAlertController.showAlert(self, contentType: .etc, message: "댓글 삭제에 실패하였습니다.\n다시시도 해주세요.")
+        UIAlertController.showAlert(self, contentType: .failToDelete, message: "댓글 삭제에 실패하였습니다.\n다시시도 해주세요.")
         return
       }
     }
@@ -141,7 +150,7 @@ class DetailPostViewController: BaseViewController {
     }
   }
   
-  // MARK: - Actions
+  // MARK: - Keyboard
   @objc private func keyboardWillShow(_ notification: Notification) {
     if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
       let keybaordRectangle = keyboardFrame.cgRectValue
@@ -160,7 +169,7 @@ class DetailPostViewController: BaseViewController {
     }
   }
   
-  // MARK: - Action
+  // MARK: - Actions
   @objc func onWrite(_ sender: UIButton) {
     let text = toolbar.commentTextField.text!
 
@@ -172,13 +181,20 @@ class DetailPostViewController: BaseViewController {
     let vc = PostViewController()
     vc.viewType = .update
     showAlertMenu(message: "포스트 관리", vc: vc) {
-      // APIService.deleteComment(token: user.jwt, postID: comment.post.id) { error in
-      //   guard error == nil else {
-      //     UIAlertController.showAlert(self, contentType: .etc, message: "댓글 삭제에 실패하였습니다.\n다시시도 해주세요.")
-      //     return
-      //   }
-      // }
-      print("포스트 삭제")
+      
+      if let user = self.user, let post = self.post {
+        APIService.deletePost(token: user.jwt, postID: post.id) { error in
+          
+          guard error == nil else {
+            UIAlertController.showAlert(self, contentType: .failToDelete, message: "삭제에 실패하였습니다.\n다시시도 해주세요.")
+            return
+          }
+        }
+        
+        UIAlertController.sucessAlert(self, contentType: .success, message: "포스트 삭제가 완료되었습니다.")
+      } else {
+        UIAlertController.showAlert(self, contentType: .etc, message: "포스트가 존재하지 않습니다.")
+      }
     }
   }
 }
@@ -200,6 +216,7 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
     if indexPath.section == 0 {
       if indexPath.row == 0 { // profile
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath) as? ProfileCell else { return UITableViewCell() }
+        
         if let post = post {
           if post.user.username.isEmpty {
             cell.nicknameLabel.text = "(이름 없음)"
@@ -210,32 +227,36 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
           let date = DateFormatter().toString(date: post.updatedAt)
           cell.dateLabel.text = date
         }
+        
         cell.selectionStyle = .none
         return cell
       } else if indexPath.row == 1 { // post content
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentPostCell.identifier, for: indexPath) as? CommentPostCell else { return UITableViewCell() }
+        
         if let post = post {
           cell.postTextLabel.text = post.text
         }
+        
         cell.selectionStyle = .none
         return cell
       } else if indexPath.row == 2 { // comment
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
+        
         cell.selectionStyle = .none
         return cell
       } else {
         return UITableViewCell()
       }
-    } else {
-      // comment content
+    } else { // comment content
       guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentListCell.identifier, for: indexPath) as? CommentListCell else { return UITableViewCell() }
-      
       let comment = commentList[indexPath.row]
+      
       if comment.user.username.isEmpty {
         cell.nicknameLabel.text = "(이름 없음)"
       } else {
         cell.nicknameLabel.text = comment.user.username
       }
+      
       cell.contentLabel.text = comment.comment
       
       let date = DateFormatter().toString(date: comment.updatedAt)

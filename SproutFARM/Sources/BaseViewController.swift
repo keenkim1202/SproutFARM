@@ -17,6 +17,10 @@ class BaseViewController: UIViewController {
     adjustNavigationBarFont()
   }
   
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+  
   // MARK: - Configure
   func configure() {
     view.backgroundColor = .systemBackground

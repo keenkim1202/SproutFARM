@@ -98,7 +98,6 @@ class CommentListCell: UITableViewCell {
       $0.top.equalToSuperview().offset(Metric.topBottomInset)
       $0.width.equalTo(nicknameLabel.snp.height)
       $0.height.equalTo(editButton.snp.width)
-      
     }
   }
 }
