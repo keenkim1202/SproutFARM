@@ -176,23 +176,21 @@ class DetailPostViewController: BaseViewController {
     vc.viewType = .update
     vc.user = user
     vc.post = post
-    showAlertMenu(message: "포스트 관리", vc: vc) {
-      
-      if let user = self.user, let post = self.post {
-        if user.user.id == post.user.id { // 본인이 작성한 포스트일 경우
-          APIService.deletePost(token: user.jwt, postID: post.id) { error in
-            
-            guard error == nil else {
-              UIAlertController.showAlert(self, contentType: .failToDelete, message: "삭제에 실패하였습니다.\n다시시도 해주세요.")
-              return
-            }
-          }
+    
+    if let user = user, let post = post, user.user.id == post.user.id { // 본인이 작성한 포스트일 경우
+      showAlertMenu(message: "포스트 관리", vc: vc) {
+        APIService.deletePost(token: user.jwt, postID: post.id) { error in
           
-          UIAlertController.sucessAlert(self, contentType: .success, message: "포스트 삭제가 완료되었습니다.")
+          guard error == nil else {
+            UIAlertController.showAlert(self, contentType: .failToDelete, message: "삭제에 실패하였습니다.\n다시시도 해주세요.")
+            return
+          }
         }
-      } else {
-        UIAlertController.showAlert(self, contentType: .etc, message: "포스트가 존재하지 않습니다.")
+        
+        UIAlertController.sucessAlert(self, contentType: .success, message: "포스트 삭제가 완료되었습니다.")
       }
+    } else {
+      UIAlertController.showAlert(self, contentType: .etc, message: "본인이 작성한 포스트가 아닙니다.")
     }
   }
 }
