@@ -48,11 +48,6 @@ class DetailPostViewController: BaseViewController {
     fetchComments()
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    // fetchComments()
-  }
-  
   // MARK: - Configure
   func setTableView() {
     tableView.delegate = self
