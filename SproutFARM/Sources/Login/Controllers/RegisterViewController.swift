@@ -47,7 +47,7 @@ class RegisterViewController: BaseViewController {
       }
       
       print("register success")
-      UIAlertController.sucessAlert(self, contentType: .successToSignUp, message: "회원가입에 성공하였습니다.\n로그인을 시도해주세요!")
+      UIAlertController.sucessAlert(self, contentType: .success, message: "회원가입에 성공하였습니다.\n로그인을 시도해주세요!")
     }
   }
   

@@ -7,18 +7,33 @@
 
 import Foundation
 
+// post 조회시 사용되는 Post 모델
 struct Post: Codable {
   let id: Int
   let text: String
   let user: UserInfo
   let createdAt, updatedAt: Date
-  let comments: [PostComment]
+  let comments: [PostCommentInfo]
   
   enum CodingKeys: String, CodingKey {
     case id, text, user
     case createdAt = "created_at"
     case updatedAt = "updated_at"
     case comments
+  }
+}
+
+// post 조회시 나오는 comment 모델
+struct PostCommentInfo: Codable {
+  let id: Int
+  let comment: String
+  let user, post: Int
+  let createdAt, updatedAt: String
+  
+  enum CodingKeys: String, CodingKey {
+    case id, comment, user, post
+    case createdAt = "created_at"
+    case updatedAt = "updated_at"
   }
 }
 
@@ -31,7 +46,7 @@ extension Post {
     id = try container.decode(Int.self, forKey: .id)
     text = try container.decode(String.self, forKey: .text)
     user = try container.decode(UserInfo.self, forKey: .user)
-    comments = try container.decode([PostComment].self, forKey: .comments)
+    comments = try container.decode([PostCommentInfo].self, forKey: .comments)
     
     let createdDateString = try container.decode(String.self, forKey: .createdAt)
     let updatedDateString = try container.decode(String.self, forKey: .updatedAt)

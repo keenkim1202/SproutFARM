@@ -10,6 +10,8 @@ import UIKit
 class EditCommentViewController: BaseViewController {
   
   // MARK: - Properties
+  var user: User?
+  var post: Post?
   var comment: Comment?
   
   // MARK: - UI
@@ -19,6 +21,8 @@ class EditCommentViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    editCommentView.textView.delegate = self
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onDone))
     setConstraints()
   }
   
@@ -40,5 +44,27 @@ class EditCommentViewController: BaseViewController {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
+  
+  @objc func onDone() {
+    guard
+      let user = user,
+      let comment = comment
+    else { return }
+    print(comment)
+    
+    APIService.updateComment(token: user.jwt, comment: editCommentView.textView.text, postID: comment.post.id, commentID: comment.id) { error in
+      guard error == nil else {
+        UIAlertController.showAlert(self, contentType: .failToUpdate, message: "댓글 변경에 실패하였습니다.\n다시시도 해주세요.")
+        return
+      }
+    }
+    UIAlertController.sucessAlert(self, contentType: .success, message: "댓글 수정 완료!")
+    
+    // self.navigationController?.popViewController(animated: true)
+  }
+  
+}
+
+extension EditCommentViewController: UITextViewDelegate {
   
 }

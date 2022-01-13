@@ -96,9 +96,11 @@ class APIService {
   
   static func updateComment(token: String, comment: String, postID: Int, commentID: Int, completion: @escaping (APIError?) -> Void) {
     let url = URL(string: EndPoint.comments + "/\(commentID)")!
-  
+    print(url)
+    print("comment: \(comment)")
     var request = URLRequest(url: url)
     request.httpMethod = HttpMethod.PUT.rawValue
+    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     request.httpBody = "comment=\(comment)&post=\(postID)".data(using: .utf8, allowLossyConversion: false)
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
   

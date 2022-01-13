@@ -44,7 +44,13 @@ class DetailPostViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    print(#function)
     fetchComments()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    // fetchComments()
   }
   
   // MARK: - Configure
@@ -98,7 +104,10 @@ class DetailPostViewController: BaseViewController {
           return
         }
         
-        guard let comments = comments else { return }
+        guard let comments = comments else {
+          return
+        }
+        print("com: ", comments)
         self.commentList = comments
         
         DispatchQueue.main.async {
@@ -224,6 +233,7 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 1 {
       let vc = EditCommentViewController()
+      vc.user = user
       vc.comment = commentList[indexPath.row]
       showAlertMenu(message: "댓글 관리", vc: vc)
     }
