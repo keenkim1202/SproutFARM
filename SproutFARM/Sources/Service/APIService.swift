@@ -69,6 +69,18 @@ class APIService {
     URLSession.shared.request(request, completion: completion)
   }
   
+  static func writePost(token: String, text: String, completion: @escaping (APIError?) -> Void) {
+    let url = URL(string: EndPoint.posts)!
+  
+    var request = URLRequest(url: url)
+    request.httpMethod = HttpMethod.POST.rawValue
+    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    request.httpBody = "text=\(text)".data(using: .utf8, allowLossyConversion: false)
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+  
+    URLSession.shared.request(request, completion: completion)
+  }
+  
   // MARK: - Comment
   static func fetchComments(token: String, postID: Int, completion: @escaping ([Comment]?, APIError?) -> Void) {
     var components = URLComponents(string: EndPoint.comments)!
@@ -107,8 +119,8 @@ class APIService {
     URLSession.shared.request(request, completion: completion)
   }
   
-  static func deleteComment(token: String, postID: Int, completion: @escaping (APIError?) -> Void) {
-    let url = URL(string: EndPoint.comments + "/\(postID)")!
+  static func deleteComment(token: String, commentID: Int, completion: @escaping (APIError?) -> Void) {
+    let url = URL(string: EndPoint.comments + "/\(commentID)")!
   
     var request = URLRequest(url: url)
     request.httpMethod = HttpMethod.DELETE.rawValue

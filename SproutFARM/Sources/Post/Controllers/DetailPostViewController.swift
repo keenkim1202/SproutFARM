@@ -95,7 +95,7 @@ class DetailPostViewController: BaseViewController {
     if let user = user, let post = post {
       APIService.fetchComments(token: user.jwt, postID: post.id) { comments, error in
         guard error == nil else {
-          UIAlertController.showAlert(self, contentType: .failToFetch, message: "댓글을 불러오는데 실패하였습니다.\n다시 시도해 주세요.")
+          UIAlertController.showAlert(self, contentType: .failToFetch, message: "댓글을 불러오는데 실패하였습니다.\n다시 시도해 주세요.", completion: nil)
           return
         }
         
@@ -128,6 +128,18 @@ class DetailPostViewController: BaseViewController {
     }
   }
   
+  func deleteComment(token: String, commentID: Int) {
+    APIService.deleteComment(token: token, commentID: commentID) { error in
+      guard error == nil else {
+        UIAlertController.showAlert(self, contentType: .etc, message: "댓글 삭제에 실패하였습니다.\n다시시도 해주세요.")
+        return
+      }
+    }
+    
+    UIAlertController.showAlert(self, contentType: .success, message: "댓글 삭제 완료!") {
+      self.fetchComments()
+    }
+  }
   
   // MARK: - Actions
   @objc private func keyboardWillShow(_ notification: Notification) {
@@ -159,7 +171,15 @@ class DetailPostViewController: BaseViewController {
   @objc func onEditPost() {
     let vc = PostViewController()
     vc.viewType = .update
-    showAlertMenu(message: "포스트 관리", vc: vc)
+    showAlertMenu(message: "포스트 관리", vc: vc) {
+      // APIService.deleteComment(token: user.jwt, postID: comment.post.id) { error in
+      //   guard error == nil else {
+      //     UIAlertController.showAlert(self, contentType: .etc, message: "댓글 삭제에 실패하였습니다.\n다시시도 해주세요.")
+      //     return
+      //   }
+      // }
+      print("포스트 삭제")
+    }
   }
 }
 
@@ -227,11 +247,16 @@ extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 1 {
-      if let user = user, user.user.id == commentList[indexPath.row].user.id { // 본인이 댓글 작성자일 경우
-          let vc = EditCommentViewController()
-          vc.user = user
-          vc.comment = commentList[indexPath.row]
-          showAlertMenu(message: "댓글 관리", vc: vc)
+      let seletedComment = commentList[indexPath.row]
+      
+      if let user = user, user.user.id == seletedComment.user.id { // 본인이 댓글 작성자일 경우
+        let vc = EditCommentViewController()
+        vc.user = user
+        vc.comment = seletedComment
+        
+        showAlertMenu(message: "댓글 관리", vc: vc) {
+          self.deleteComment(token: user.jwt, commentID: seletedComment.id)
+        }
       } else {
         UIAlertController.showAlert(self, contentType: .etc, message: "본인이 작성한 댓글만 수정할 수 있습니다.")
       }

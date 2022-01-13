@@ -31,6 +31,20 @@ extension UIAlertController {
     presentedHost.present(alert, animated: true, completion: nil)
   }
   
+  static func showAlert(_ presentedHost: UIViewController,
+                   contentType: ContentType,
+                   message: String,
+                   completion: (() -> Void)?) {
+    let alert = UIAlertController(
+      title: contentType.rawValue,
+      message: message,
+      preferredStyle: .alert)
+    let okAction = UIAlertAction(
+      title: "확인", style: .default, handler: nil)
+    alert.addAction(okAction)
+    presentedHost.present(alert, animated: true, completion: nil)
+  }
+  
   static func sucessAlert(_ presentedHost: UIViewController,
                           contentType: ContentType,
                           message: String) {
@@ -43,6 +57,26 @@ extension UIAlertController {
       presentedHost.navigationController?.popViewController(animated: true)
     }
     alert.addAction(okAction)
+    presentedHost.present(alert, animated: true, completion: nil)
+  }
+  
+  static func deleteAlert(_ presentedHost: UIViewController,
+                          contentType: ContentType,
+                          message: String,
+                          completion: @escaping () -> Void
+  ) {
+    let alert = UIAlertController(
+      title: contentType.rawValue,
+      message: message,
+      preferredStyle: .alert)
+    
+    let cancelAction = UIAlertAction(title: "취소", style: .default)
+    let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+      completion()
+    }
+    
+    alert.addAction(cancelAction)
+    alert.addAction(deleteAction)
     presentedHost.present(alert, animated: true, completion: nil)
   }
 }

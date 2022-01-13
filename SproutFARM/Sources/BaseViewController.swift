@@ -22,7 +22,7 @@ class BaseViewController: UIViewController {
     view.backgroundColor = .systemBackground
   }
   
-  func showAlertMenu(message: String, vc: UIViewController) {
+  func showAlertMenu(message: String, vc: UIViewController, completion: @escaping () -> Void) {
     let alertMenu = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
     
     let updateAction = UIAlertAction(title: "수정", style: .default, handler: {
@@ -33,6 +33,9 @@ class BaseViewController: UIViewController {
     let deleteAction = UIAlertAction(title: "삭제", style: .destructive, handler: {
       (alert: UIAlertAction!) -> Void in
       // TODO: "정말 삭제하시겠습니까?" alert 띄우기
+      UIAlertController.deleteAlert(self, contentType: .etc, message: "정말 삭제하시겠습니까?") {
+        completion()
+      }
     })
     let cancelAction = UIAlertAction(title: "취소", style: .cancel)
     

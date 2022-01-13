@@ -54,7 +54,7 @@ class EditCommentViewController: BaseViewController {
     
     APIService.updateComment(token: user.jwt, comment: editCommentView.textView.text, postID: comment.post.id, commentID: comment.id) { error in
       guard error == nil else {
-        UIAlertController.showAlert(self, contentType: .failToUpdate, message: "댓글 변경에 실패하였습니다.\n다시시도 해주세요.")
+        UIAlertController.showAlert(self, contentType: .failToUpdate, message: "댓글 변경에 실패하였습니다.\n다시시도 해주세요.", completion: nil)
         return
       }
     }

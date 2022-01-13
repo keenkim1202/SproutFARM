@@ -17,12 +17,15 @@ class PostViewController: BaseViewController {
   
   // MARK: - Properties
   var viewType: ViewType = .add
+  var user: User?
   
   // MARK: - UI
   let textView: UITextView = {
     let t = UITextView()
     t.font = .systemFont(ofSize: 13, weight: .bold)
-    t.backgroundColor = .systemGray4
+    t.layer.borderWidth = 1
+    t.layer.borderColor = UIColor.lightGray.cgColor
+    t.layer.cornerRadius = 5
     return t
   }()
   
@@ -54,8 +57,24 @@ class PostViewController: BaseViewController {
     }
   }
   
+  func writePost() {
+    if let user = user {
+      APIService.writePost(token: user.jwt, text: textView.text) { error in
+        guard error == nil else {
+          UIAlertController.showAlert(self, contentType: .failToWrite, message: "포스트 작성에 실패하였습니다.\n다시시도 해주세요.")
+          return
+        }
+      }
+      
+      UIAlertController.sucessAlert(self, contentType: .success, message: "포스트 작성 완료!")
+    }
+  }
+  
   // MARK: - Action
   @objc func onDone(_ sender: UIBarButtonItem) {
+    // TODO: 포스트 작성하기
+    
+    
     self.textView.endEditing(true)
     self.navigationController?.popViewController(animated: true)
   }

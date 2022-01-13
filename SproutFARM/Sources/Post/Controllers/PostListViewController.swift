@@ -50,6 +50,7 @@ class PostListViewController: BaseViewController {
     label.text = "새싹 농장"
     label.font = .systemFont(ofSize: 15, weight: .bold)
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
+    
     setTableView()
     setConstaints()
   }
