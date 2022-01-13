@@ -21,35 +21,8 @@ class PostListCell: UITableViewCell {
   static let identifier = "PostCell"
   
   // MARK: - UI
-  let nicknameView: UIView = {
-    let v = UIView()
-    v.backgroundColor = .systemGray6
-    v.layer.cornerRadius = 5
-    return v
-  }()
-  
-  let nicknameLabel: UILabel = {
-    let l = UILabel()
-    l.text = "이름 없음"
-    l.font = .systemFont(ofSize: 12, weight: .medium)
-    l.textColor = .systemGray
-    return l
-  }()
-  
-  let contentLabel: UILabel = {
-    let l = UILabel()
-    l.text = "내용 없음"
-    l.font = .systemFont(ofSize: 13, weight: .medium)
-    l.numberOfLines = 3
-    return l
-  }()
-  
-  let dateLabel: UILabel = {
-    let l = UILabel()
-    l.font = .systemFont(ofSize: 12, weight: .regular)
-    l.textColor = .systemGray
-    return l
-  }()
+  let postView = PostView()
+  let commentView = CommentView()
   
   // MARK: - Init
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -67,35 +40,19 @@ class PostListCell: UITableViewCell {
   // MARK: - Configure
   private func createViews() {
     
-    addSubview(nicknameView)
-    addSubview(contentLabel)
-    addSubview(dateLabel)
-    nicknameView.addSubview(nicknameLabel)
+    addSubview(postView)
+    addSubview(commentView)
   }
   
   private func setConstraints() {
-    nicknameView.snp.makeConstraints {
-      $0.leading.top.equalToSuperview().offset(Metric.topBottomInset)
-      $0.width.equalTo(nicknameLabel.snp.width).offset(Metric.labelPadding)
-      $0.height.equalTo(nicknameLabel.snp.height).offset(Metric.labelPadding)
+    postView.snp.makeConstraints {
+      $0.leading.top.trailing.equalToSuperview()
+      $0.bottom.equalTo(commentView.snp.top)
     }
     
-    nicknameLabel.snp.makeConstraints {
-      $0.centerX.centerY.equalTo(nicknameView)
+    commentView.snp.makeConstraints {
+      $0.leading.bottom.trailing.equalToSuperview()
+      $0.top.equalTo(postView.snp.bottom)
     }
-    
-    contentLabel.snp.makeConstraints {
-      $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
-      $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
-      $0.top.equalTo(nicknameView.snp.bottom).offset(Metric.topBottomInset)
-    }
-    
-    dateLabel.snp.makeConstraints {
-      $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
-      $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
-      $0.top.equalTo(contentLabel.snp.bottom).offset(Metric.topBottomInset)
-      $0.bottom.equalToSuperview().offset(-Metric.topBottomInset)
-    }
-    
   }
 }

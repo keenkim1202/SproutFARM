@@ -72,6 +72,7 @@ class PostViewController: BaseViewController {
   // MARK: - Action
   @objc func onDone(_ sender: UIBarButtonItem) {
     // TODO: 포스트 작성하기
+    writePost()
     self.textView.endEditing(true)
     self.navigationController?.popViewController(animated: true)
   }

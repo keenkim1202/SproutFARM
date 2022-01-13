@@ -58,6 +58,7 @@ class PostListViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    self.postList = []
     fetchPosts()
   }
   
@@ -90,7 +91,6 @@ class PostListViewController: BaseViewController {
   
   // MARK: - HTTP Networking
   func fetchPosts(start: Int = 0, limit: Int = 10) {
-    self.postList = []
     guard let user = user else { return }
 
     DispatchQueue.global().async {
@@ -113,45 +113,40 @@ class PostListViewController: BaseViewController {
   
   // MARK: - Action
   @objc func onAdd() {
-    self.navigationController?.pushViewController(PostViewController(), animated: true)
+    let vc = PostViewController()
+    vc.user = user
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 
 // MARK: - Extension
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return postList.count * 2
+    return postList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let post = postList[indexPath.row / 2]
+    print(postList.count)
+    let post = postList[indexPath.row]
     
-    if indexPath.row % 2 == 0 {
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath) as? PostListCell else { return UITableViewCell() }
-      if post.user.username.isEmpty {
-        cell.nicknameLabel.text = "(이름 없음)"
-      } else {
-        cell.nicknameLabel.text = post.user.username
-      }
-      cell.contentLabel.text = post.text
-      
-      let date = DateFormatter().toString(date: post.updatedAt)
-      cell.dateLabel.text = date
-      cell.selectionStyle = .none
-      return cell
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCell.identifier, for: indexPath) as? PostListCell else { return UITableViewCell() }
+    if post.user.username.isEmpty {
+      cell.postView.nicknameLabel.text = "(이름 없음)"
     } else {
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
-      if post.comments.count != 0 {
-        cell.label.text = "댓글 \(post.comments.count)"
-      }
-      cell.selectionStyle = .none
-      return cell
+      cell.postView.nicknameLabel.text = post.user.username
     }
+    cell.postView.contentLabel.text = post.text
+    
+    let date = DateFormatter().toString(date: post.updatedAt)
+    cell.postView.dateLabel.text = date
+    cell.selectionStyle = .none
+    return cell
   }
+
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = DetailPostViewController()
-    vc.post = postList[indexPath.row / 2]
+    vc.post = postList[indexPath.row]
     vc.user = user
     
     self.navigationController?.pushViewController(vc, animated: true)
@@ -169,14 +164,14 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
 extension PostListViewController: UITableViewDataSourcePrefetching {
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     for indexPath in indexPaths {
-      if (postList.count - 1 == indexPath.row / 2) {
+      if (postList.count - 1 == indexPath.row) {
         fetchPosts(start: limit + start)
       }
     }
   }
   
   func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-   print("최소 - \(indexPaths)")
+   // print("최소 - \(indexPaths)")
   }
 
 }

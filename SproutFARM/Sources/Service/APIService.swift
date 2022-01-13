@@ -77,7 +77,7 @@ class APIService {
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     request.httpBody = "text=\(text)".data(using: .utf8, allowLossyConversion: false)
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-  
+    print(request.url)
     URLSession.shared.request(request, completion: completion)
   }
   
