@@ -19,12 +19,12 @@ class DetailToolbar: UIView {
   }
   
   // MARK: - UI
-  let toolbar: UIToolbar = {
-    let t = UIToolbar()
-    t.barTintColor = .systemBackground
-    t.sizeToFit()
-    return t
-  }()
+  // let toolbar: UIToolbar = {
+  //   let t = UIToolbar()
+  //   t.barTintColor = .systemBackground
+  //   t.sizeToFit()
+  //   return t
+  // }()
   
   let commentTextField: UITextField = {
     let t = UITextField()
@@ -62,29 +62,47 @@ class DetailToolbar: UIView {
   
   // MARK: - Configure
   private func createViews() {
-    addSubview(toolbar)
-    toolbar.addSubview(commentTextField)
-    toolbar.addSubview(doneButton)
+    // addSubview(toolbar)
+    // toolbar.addSubview(commentTextField)
+    // toolbar.addSubview(doneButton)
+    
+    addSubview(commentTextField)
+    addSubview(doneButton)
   }
   
   private func setConstraints() {
-    toolbar.snp.makeConstraints {
-      $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalTo(safeAreaLayoutGuide)
-      $0.height.equalTo(Metric.toolbarHeight)
-    }
+    // toolbar.snp.makeConstraints {
+    //   $0.leading.trailing.equalToSuperview()
+    //   $0.bottom.equalTo(safeAreaLayoutGuide)
+    //   $0.height.equalTo(Metric.toolbarHeight)
+    // }
+    //
+    // commentTextField.snp.makeConstraints {
+    //   $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
+    //   $0.trailing.equalTo(doneButton.snp.leading).offset(-5)
+    //   $0.centerY.equalTo(toolbar.snp.centerY)
+    //   $0.height.equalTo(Metric.textFieldHeight)
+    // }
+    //
+    // doneButton.snp.makeConstraints {
+    //   $0.leading.equalTo(commentTextField.snp.trailing).offset(5)
+    //   $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
+    //   $0.centerY.equalTo(toolbar.snp.centerY)
+    //   $0.height.equalTo(Metric.textFieldHeight)
+    //   $0.width.equalTo(Metric.buttonWidth)
+    // }
     
     commentTextField.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(Metric.leadingTrailingInset)
       $0.trailing.equalTo(doneButton.snp.leading).offset(-5)
-      $0.centerY.equalTo(toolbar.snp.centerY)
+      $0.centerY.equalToSuperview()
       $0.height.equalTo(Metric.textFieldHeight)
     }
     
     doneButton.snp.makeConstraints {
       $0.leading.equalTo(commentTextField.snp.trailing).offset(5)
       $0.trailing.equalToSuperview().offset(-Metric.leadingTrailingInset)
-      $0.centerY.equalTo(toolbar.snp.centerY)
+      $0.centerY.equalToSuperview()
       $0.height.equalTo(Metric.textFieldHeight)
       $0.width.equalTo(Metric.buttonWidth)
     }

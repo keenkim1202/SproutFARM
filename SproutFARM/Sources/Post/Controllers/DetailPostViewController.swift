@@ -19,11 +19,13 @@ class DetailPostViewController: BaseViewController {
   var user: User?
   var post: Post?
   var commentList: [Comment] = []
+  var isKeyboardAppear: Bool = false
   
   // MARK: - UI
   let tableView: UITableView = {
     let t = UITableView()
     t.cellLayoutMarginsFollowReadableWidth = false
+    t.keyboardDismissMode = .onDrag
     t.separatorInset.left = 0
     return t
   }()
@@ -41,13 +43,20 @@ class DetailPostViewController: BaseViewController {
     setNagivationBar()
     setTableView()
     setConstaints()
-    addKeyboardNotification()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    self.addKeyboardNotifications()
+    
     fetchComments()
   }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.removeKeyboardNotifications()
+  }
+
   
   // MARK: - Configure
   func setNagivationBar() {
@@ -80,22 +89,32 @@ class DetailPostViewController: BaseViewController {
     }
   }
   
-  private func addKeyboardNotification() {
+  func addKeyboardNotifications() {
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(keyboardWillShow),
-      name: UIResponder.keyboardWillShowNotification,
-      object: nil
-    )
-    
+      selector: #selector(self.keyboardWillShow),
+      name: UIResponder.keyboardWillShowNotification
+      ,object: nil)
+  
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(keyboardWillHide),
+      selector: #selector(self.keyboardWillHide),
       name: UIResponder.keyboardWillHideNotification,
-      object: nil
-    )
+      object: nil)
   }
   
+  func removeKeyboardNotifications() {
+    NotificationCenter.default.removeObserver(
+      self,
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil)
+  
+    NotificationCenter.default.removeObserver(
+      self,
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil)
+  }
+
   // MARK: - HTTP Networking
   func fetchComments() {
     if let user = user, let post = post {
@@ -145,21 +164,31 @@ class DetailPostViewController: BaseViewController {
   }
   
   // MARK: - Keyboard
-  @objc private func keyboardWillShow(_ notification: Notification) {
-    if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-      let keybaordRectangle = keyboardFrame.cgRectValue
-      let keyboardHeight = keybaordRectangle.height
-      tableView.frame.origin.y -= keyboardHeight
-      toolbar.frame.origin.y -= keyboardHeight
+  @objc private func keyboardWillShow(_ notification: NSNotification) {
+    print(#function)
+    if !isKeyboardAppear {
+      if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+      
+        self.view.frame.origin.y -= keyboardHeight
+      }
+      
+      isKeyboardAppear = true
     }
   }
   
-  @objc private func keyboardWillHide(_ notification: Notification) {
-    if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-      let keybaordRectangle = keyboardFrame.cgRectValue
-      let keyboardHeight = keybaordRectangle.height
-      tableView.frame.origin.y += keyboardHeight
-      toolbar.frame.origin.y += keyboardHeight
+  @objc private func keyboardWillHide(_ notification: NSNotification) {
+    print(#function)
+    if isKeyboardAppear {
+      if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+      
+        self.view.frame.origin.y += keyboardHeight
+      }
+      
+      isKeyboardAppear = false
     }
   }
   
@@ -169,6 +198,7 @@ class DetailPostViewController: BaseViewController {
 
     writeComment(comment: text)
     toolbar.commentTextField.resignFirstResponder()
+    
   }
   
   @objc func onEditPost() {
