@@ -14,6 +14,9 @@ class RegisterView: UIView {
   let emailTextField: UITextField = {
     let t = UITextField()
     t.placeholder = "이메일 주소"
+    t.returnKeyType = .next
+    t.textContentType = .emailAddress
+    t.keyboardType = .emailAddress
     t.borderStyle = .roundedRect
     t.font = .systemFont(ofSize: 14, weight: .bold)
     t.layer.cornerRadius = 5
@@ -24,6 +27,8 @@ class RegisterView: UIView {
   let nicknameTextField: UITextField = {
     let t = UITextField()
     t.placeholder = "닉네임"
+    t.returnKeyType = .next
+    t.textContentType = .nickname
     t.borderStyle = .roundedRect
     t.font = .systemFont(ofSize: 14, weight: .bold)
     t.layer.cornerRadius = 5
@@ -34,8 +39,10 @@ class RegisterView: UIView {
   let passwordTextField: UITextField = {
     let t = UITextField()
     t.placeholder = "비밀번호"
+    t.returnKeyType = .next
     t.borderStyle = .roundedRect
     t.font = .systemFont(ofSize: 14, weight: .bold)
+    t.textContentType = .newPassword
     t.isSecureTextEntry = true
     t.layer.cornerRadius = 5
     t.addLeftPadding()
@@ -45,7 +52,9 @@ class RegisterView: UIView {
   let confirmTextField: UITextField = {
     let t = UITextField()
     t.placeholder = "비밀번호 확인"
+    t.returnKeyType = .done
     t.borderStyle = .roundedRect
+    t.textContentType = .newPassword
     t.isSecureTextEntry = true
     t.font = .systemFont(ofSize: 14, weight: .bold)
     t.layer.cornerRadius = 5
@@ -65,14 +74,14 @@ class RegisterView: UIView {
   
   // MARK: - Init
   override init(frame: CGRect) {
-      super.init(frame: frame)
+    super.init(frame: frame)
     createViews()
     setConstraints()
     setAddTarget()
   }
   
   required init?(coder: NSCoder) {
-      super.init(coder: coder)
+    super.init(coder: coder)
     createViews()
     setConstraints()
     setAddTarget()
@@ -86,6 +95,11 @@ class RegisterView: UIView {
   }
   
   private func createViews() {
+    emailTextField.delegate = self
+    nicknameTextField.delegate = self
+    passwordTextField.delegate = self
+    confirmTextField.delegate = self
+    
     addSubview(emailTextField)
     addSubview(nicknameTextField)
     addSubview(passwordTextField)
@@ -149,5 +163,20 @@ class RegisterView: UIView {
     self.registerButton.backgroundColor = .mainGreenColor
     self.registerButton.setTitle("시작하기", for: .normal)
     self.registerButton.isEnabled = true
+  }
+}
+
+extension RegisterView: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if textField == emailTextField {
+      nicknameTextField.becomeFirstResponder()
+    } else if textField == nicknameTextField {
+      passwordTextField.becomeFirstResponder()
+    } else if textField == passwordTextField {
+      confirmTextField.becomeFirstResponder()
+    } else {
+      confirmTextField.resignFirstResponder()
+    }
+    return true
   }
 }

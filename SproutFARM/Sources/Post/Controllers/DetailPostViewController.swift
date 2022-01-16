@@ -25,7 +25,6 @@ class DetailPostViewController: BaseViewController {
   let tableView: UITableView = {
     let t = UITableView()
     t.cellLayoutMarginsFollowReadableWidth = false
-    t.keyboardDismissMode = .onDrag
     t.separatorInset.left = 0
     return t
   }()
@@ -48,7 +47,6 @@ class DetailPostViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.addKeyboardNotifications()
-    
     fetchComments()
   }
   
@@ -83,7 +81,7 @@ class DetailPostViewController: BaseViewController {
     }
     
     toolbar.snp.makeConstraints {
-      $0.leading.trailing.equalToSuperview()
+      $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
       $0.bottom.equalTo(view.safeAreaLayoutGuide)
       $0.height.equalTo(Metric.toolbarHeight)
     }
@@ -165,27 +163,30 @@ class DetailPostViewController: BaseViewController {
   
   // MARK: - Keyboard
   @objc private func keyboardWillShow(_ notification: NSNotification) {
-    print(#function)
+    // safearea에 제약조건을 설정해서 생기는 문제 같음. 기종에 따라 view를 기준으로 제약조건을 잡으면 해결되지 않을까?
     if !isKeyboardAppear {
       if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
       
         self.view.frame.origin.y -= keyboardHeight
+        print("show")
       }
       
       isKeyboardAppear = true
     }
+    
+    toolbar.commentTextField.layoutIfNeeded()
   }
   
   @objc private func keyboardWillHide(_ notification: NSNotification) {
-    print(#function)
     if isKeyboardAppear {
       if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
       
         self.view.frame.origin.y += keyboardHeight
+        print("dismiss")
       }
       
       isKeyboardAppear = false
@@ -198,7 +199,6 @@ class DetailPostViewController: BaseViewController {
 
     writeComment(comment: text)
     toolbar.commentTextField.resignFirstResponder()
-    
   }
   
   @objc func onEditPost() {

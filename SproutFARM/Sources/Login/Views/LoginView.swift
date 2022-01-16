@@ -14,6 +14,9 @@ class LoginView: UIView {
   let emailTextField: UITextField = {
     let t = UITextField()
     t.placeholder = "이메일 주소"
+    t.returnKeyType = .next
+    t.textContentType = .emailAddress
+    t.keyboardType = .emailAddress
     t.borderStyle = .roundedRect
     t.font = .systemFont(ofSize: 14, weight: .bold)
     t.layer.cornerRadius = 5
@@ -24,6 +27,7 @@ class LoginView: UIView {
   let passwordTextField: UITextField = {
     let t = UITextField()
     t.placeholder = "비밀번호"
+    t.returnKeyType = .done
     t.borderStyle = .roundedRect
     t.isSecureTextEntry = true
     t.font = .systemFont(ofSize: 14, weight: .bold)
@@ -65,6 +69,9 @@ class LoginView: UIView {
   }
   
   private func createViews() {
+    emailTextField.delegate = self
+    passwordTextField.delegate = self
+    
     addSubview(emailTextField)
     addSubview(passwordTextField)
     addSubview(loginButton)
@@ -107,5 +114,16 @@ class LoginView: UIView {
   
     self.loginButton.backgroundColor = .mainGreenColor
     self.loginButton.isEnabled = true
+  }
+}
+
+extension LoginView: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if textField == emailTextField {
+      passwordTextField.becomeFirstResponder()
+    } else {
+      passwordTextField.resignFirstResponder()
+    }
+    return true
   }
 }
