@@ -15,33 +15,21 @@ class DetailPostViewController: BaseViewController {
   }
   
   // MARK: - Properties
-  var keyHeight: CGFloat?
+  var keyHeight: CGFloat = 0
   var user: User?
   var post: Post?
   var commentList: [Comment] = []
   var isKeyboardAppear: Bool = false
   
   // MARK: - UI
-  let tableView: UITableView = {
-    let t = UITableView()
-    t.cellLayoutMarginsFollowReadableWidth = false
-    t.separatorInset.left = 0
-    return t
-  }()
-  
-  let toolbar: DetailToolbar = {
-    let t = DetailToolbar()
-    t.doneButton.addTarget(self, action: #selector(onWrite), for: .touchUpInside)
-    return t
-  }()
+  let commentListView = CommentListView()
   
   // MARK: - View Life-Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setNagivationBar()
-    setTableView()
-    setConstaints()
+    setCommentListView()
+    setConstraints()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +42,6 @@ class DetailPostViewController: BaseViewController {
     super.viewWillDisappear(animated)
     self.removeKeyboardNotifications()
   }
-
   
   // MARK: - Configure
   func setNagivationBar() {
@@ -62,28 +49,18 @@ class DetailPostViewController: BaseViewController {
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onEditPost))
   }
   
-  func setTableView() {
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.register(ProfileCell.self, forCellReuseIdentifier: ProfileCell.identifier)
-    tableView.register(CommentPostCell.self, forCellReuseIdentifier: CommentPostCell.identifier)
-    tableView.register(PostListCommentCell.self, forCellReuseIdentifier: PostListCommentCell.identifier)
-    tableView.register(CommentListCell.self, forCellReuseIdentifier: CommentListCell.identifier)
+  func setCommentListView() {
+    commentListView.tableView.delegate = self
+    commentListView.tableView.dataSource = self
+    commentListView.toolbar.doneButton.addTarget(self, action: #selector(onWrite), for: .touchUpInside)
+    // TODO: tableview cell에 editComment() addtarget 하기
   }
   
-  func setConstaints() {
-    view.addSubview(tableView)
-    view.addSubview(toolbar)
+  func setConstraints() {
+    view.addSubview(commentListView)
     
-    tableView.snp.makeConstraints {
-      $0.leading.trailing.top.equalTo(view.safeAreaLayoutGuide)
-      $0.bottom.equalTo(toolbar.snp.top)
-    }
-    
-    toolbar.snp.makeConstraints {
-      $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-      $0.bottom.equalTo(view.safeAreaLayoutGuide)
-      $0.height.equalTo(Metric.toolbarHeight)
+    commentListView.snp.makeConstraints {
+      $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
   
@@ -126,7 +103,7 @@ class DetailPostViewController: BaseViewController {
         self.commentList = comments
         
         DispatchQueue.main.async {
-          self.tableView.reloadData()
+          self.commentListView.tableView.reloadData()
         }
       }
     } else {
@@ -143,7 +120,7 @@ class DetailPostViewController: BaseViewController {
         }
       }
       
-      self.toolbar.commentTextField.text = ""
+      self.commentListView.toolbar.commentTextField.text = ""
       self.fetchComments()
     }
   }
@@ -168,15 +145,14 @@ class DetailPostViewController: BaseViewController {
       if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
-      
-        self.view.frame.origin.y -= keyboardHeight
-        print("show")
+    
+        self.commentListView.frame.origin.y -= keyboardHeight
       }
       
       isKeyboardAppear = true
     }
     
-    toolbar.commentTextField.layoutIfNeeded()
+    commentListView.toolbar.commentTextField.layoutIfNeeded()
   }
   
   @objc private func keyboardWillHide(_ notification: NSNotification) {
@@ -185,8 +161,7 @@ class DetailPostViewController: BaseViewController {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
       
-        self.view.frame.origin.y += keyboardHeight
-        print("dismiss")
+        self.commentListView.frame.origin.y += keyboardHeight
       }
       
       isKeyboardAppear = false
@@ -195,10 +170,8 @@ class DetailPostViewController: BaseViewController {
   
   // MARK: - Actions
   @objc func onWrite(_ sender: UIButton) {
-    let text = toolbar.commentTextField.text!
-
+    let text = commentListView.toolbar.commentTextField.text!
     writeComment(comment: text)
-    toolbar.commentTextField.resignFirstResponder()
   }
   
   @objc func onEditPost() {
@@ -223,94 +196,36 @@ class DetailPostViewController: BaseViewController {
       UIAlertController.showAlert(self, contentType: .etc, message: "본인이 작성한 포스트가 아닙니다.")
     }
   }
-}
-
-// MARK: - Extension
-extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 2
-  }
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 0 {
-      return 3
+  
+  // MARK: - Action
+  @objc func onEditComment(sender: UIButton) {
+    var superview = sender.superview
+    while let view = superview, !(view is UITableViewCell) {
+      superview = view.superview
+    }
+    guard let cell = superview as? UITableViewCell else {
+      print("button is not contained in a table view cell")
+      return
+    }
+    
+    guard let indexPath = commentListView.tableView.indexPath(for: cell) else {
+      print("failed to get index path for cell containing button")
+      return
+    }
+    
+    print("button is in row \(indexPath.row)")
+    
+    let comment = commentList[indexPath.row]
+    if let user = user, user.user.id == comment.user.id { // 본인이 댓글 작성자일 경우
+      let vc = EditCommentViewController()
+      vc.user = user
+      vc.comment = comment
+    
+      showAlertMenu(message: "댓글 관리", vc: vc) {
+        self.deleteComment(token: user.jwt, commentID: comment.id)
+      }
     } else {
-      return commentList.count
-    }
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.section == 0 {
-      if indexPath.row == 0 { // profile
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.identifier, for: indexPath) as? ProfileCell else { return UITableViewCell() }
-        
-        if let post = post {
-          if post.user.username.isEmpty {
-            cell.nicknameLabel.text = "(이름 없음)"
-          } else {
-            cell.nicknameLabel.text = post.user.username
-          }
-
-          let date = DateFormatter().toString(date: post.updatedAt)
-          cell.dateLabel.text = date
-        }
-        
-        cell.selectionStyle = .none
-        return cell
-      } else if indexPath.row == 1 { // post content
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentPostCell.identifier, for: indexPath) as? CommentPostCell else { return UITableViewCell() }
-        
-        if let post = post {
-          cell.postTextLabel.text = post.text
-        }
-        
-        cell.selectionStyle = .none
-        return cell
-      } else if indexPath.row == 2 { // comment
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostListCommentCell.identifier, for: indexPath) as? PostListCommentCell else { return UITableViewCell() }
-        
-        if !commentList.isEmpty {
-          cell.label.text = "댓글 \(commentList.count)"
-        }
-        
-        cell.selectionStyle = .none
-        return cell
-      } else {
-        return UITableViewCell()
-      }
-    } else { // comment content
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentListCell.identifier, for: indexPath) as? CommentListCell else { return UITableViewCell() }
-      let comment = commentList[indexPath.row]
-      
-      if comment.user.username.isEmpty {
-        cell.nicknameLabel.text = "(이름 없음)"
-      } else {
-        cell.nicknameLabel.text = comment.user.username
-      }
-      
-      cell.contentLabel.text = comment.comment
-      
-      let date = DateFormatter().toString(date: comment.updatedAt)
-      cell.dateLabel.text = date
-      cell.selectionStyle = .none
-      return cell
-    }
-  }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.section == 1 {
-      let seletedComment = commentList[indexPath.row]
-      
-      if let user = user, user.user.id == seletedComment.user.id { // 본인이 댓글 작성자일 경우
-        let vc = EditCommentViewController()
-        vc.user = user
-        vc.comment = seletedComment
-        
-        showAlertMenu(message: "댓글 관리", vc: vc) {
-          self.deleteComment(token: user.jwt, commentID: seletedComment.id)
-        }
-      } else {
-        UIAlertController.showAlert(self, contentType: .etc, message: "본인이 작성한 댓글만 수정할 수 있습니다.")
-      }
+      UIAlertController.showAlert(self, contentType: .etc, message: "본인이 작성한 댓글만 수정할 수 있습니다.")
     }
   }
 }

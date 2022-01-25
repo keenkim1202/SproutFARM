@@ -66,6 +66,7 @@ class DetailToolbar: UIView {
     // toolbar.addSubview(commentTextField)
     // toolbar.addSubview(doneButton)
     
+    commentTextField.delegate = self
     addSubview(commentTextField)
     addSubview(doneButton)
   }
@@ -107,5 +108,8 @@ class DetailToolbar: UIView {
       $0.width.equalTo(Metric.buttonWidth)
     }
   }
+}
+
+extension DetailToolbar: UITextFieldDelegate {
   
 }
