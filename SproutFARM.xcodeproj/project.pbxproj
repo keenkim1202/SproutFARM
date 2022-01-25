@@ -14,6 +14,7 @@
 		1C58C7D027842B3500CC3F50 /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7CF27842B3500CC3F50 /* PostListCell.swift */; };
 		1C58C7D227842B4C00CC3F50 /* DetailToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */; };
 		1C58C7D627842CE200CC3F50 /* PostListCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */; };
+		1C858A09279FA40400F9970C /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C858A08279FA40400F9970C /* CommentListView.swift */; };
 		1CC9A7032785C62200914655 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7022785C62200914655 /* ProfileCell.swift */; };
 		1CC9A7052785C9D200914655 /* CommentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A7042785C9D200914655 /* CommentListCell.swift */; };
 		1CC9A70D278611E400914655 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC9A70C278611E400914655 /* User.swift */; };
@@ -55,6 +56,7 @@
 		1C58C7CF27842B3500CC3F50 /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
 		1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailToolbar.swift; sourceTree = "<group>"; };
 		1C58C7D527842CE200CC3F50 /* PostListCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCommentCell.swift; sourceTree = "<group>"; };
+		1C858A08279FA40400F9970C /* CommentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
 		1CC9A7022785C62200914655 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		1CC9A7042785C9D200914655 /* CommentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListCell.swift; sourceTree = "<group>"; };
 		1CC9A70C278611E400914655 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				1C258D5F278EC84800AD237F /* CommentPostCell.swift */,
 				1CC9A7042785C9D200914655 /* CommentListCell.swift */,
 				1C58C7D127842B4C00CC3F50 /* DetailToolbar.swift */,
+				1C858A08279FA40400F9970C /* CommentListView.swift */,
 				1CC9A7182786E46F00914655 /* EditCommentView.swift */,
 				1CD60EBA2790414C005635DC /* PostView.swift */,
 				1CD60EBC279041A1005635DC /* CommentView.swift */,
@@ -355,6 +358,7 @@
 				1CC9A7032785C62200914655 /* ProfileCell.swift in Sources */,
 				1CC9A7192786E46F00914655 /* EditCommentView.swift in Sources */,
 				1C58C7D227842B4C00CC3F50 /* DetailToolbar.swift in Sources */,
+				1C858A09279FA40400F9970C /* CommentListView.swift in Sources */,
 				1CC9A7052785C9D200914655 /* CommentListCell.swift in Sources */,
 				1CE842932782829B003259A1 /* BaseViewController.swift in Sources */,
 				1CE84297278283EC003259A1 /* UIImage++Extension.swift in Sources */,

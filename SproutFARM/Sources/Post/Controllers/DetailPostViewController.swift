@@ -144,9 +144,9 @@ class DetailPostViewController: BaseViewController {
     if !isKeyboardAppear {
       if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
         let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
+        let keyboardHeight = (keyboardRectangle.height - view.safeAreaInsets.bottom)
     
-        self.commentListView.frame.origin.y -= keyboardHeight
+        self.view.frame.origin.y -= keyboardHeight
       }
       
       isKeyboardAppear = true
@@ -159,9 +159,9 @@ class DetailPostViewController: BaseViewController {
     if isKeyboardAppear {
       if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
         let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
+        let keyboardHeight = (keyboardRectangle.height  - view.safeAreaInsets.bottom)
       
-        self.commentListView.frame.origin.y += keyboardHeight
+        self.view.frame.origin.y += keyboardHeight
       }
       
       isKeyboardAppear = false
@@ -172,6 +172,7 @@ class DetailPostViewController: BaseViewController {
   @objc func onWrite(_ sender: UIButton) {
     let text = commentListView.toolbar.commentTextField.text!
     writeComment(comment: text)
+    self.commentListView.toolbar.commentTextField.resignFirstResponder()
   }
   
   @objc func onEditPost() {
