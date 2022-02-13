@@ -22,7 +22,7 @@ enum HttpMethod: String {
 }
 
 struct EndPoint {
-  static let baseURL = "http://test.monocoding.com:1231"
+  static let baseURL = "" // baseURL 삭제
   
   static let login = baseURL + "/auth/local"
   static let sigup = baseURL + "/auth/local/register"
